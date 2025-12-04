@@ -90,30 +90,46 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 32px;
+            padding: 12px 24px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover:before {
+            left: 100%;
         }
 
         .btn-primary {
             background: var(--primary);
             color: white;
-            box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(139, 69, 19, 0.4);
         }
 
         .btn-secondary {
@@ -125,19 +141,99 @@
         .btn-secondary:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
         .btn-gold {
             background: var(--gold);
             color: var(--dark);
             font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
         .btn-gold:hover {
             background: #e6c200;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: #28a745;
+        }
+        
+        .notification.error {
+            background: #dc3545;
+        }
+        
+        .notification.info {
+            background: #17a2b8;
+        }
+        
+        .notification.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .notification .close-btn {
+            float: right;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 0;
+        }
+        
+        .notification.warning .close-btn {
+            color: #212529;
+        }
+        
+        /* All sections are visible by default */
+        section {
+            display: block;
+            visibility: visible;
+        }
+
+        /* Testimonial cards */
+        .testimonial-card {
+            display: none;
+        }
+
+        .testimonial-card:first-child {
+            display: block;
         }
 
         /* Header Styles */
@@ -147,11 +243,16 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 15px 0;
-            transition: var(--transition);
-            background: rgba(255, 248, 240, 0.95);
+            padding: 6px 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 248, 240, 0.98);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(62, 39, 35, 0.1);
+            box-shadow: 0 5px 20px rgba(62, 39, 35, 0.15);
+        }
+
+        header.scrolled {
+            padding: 4px 0;
+            background: rgba(255, 248, 240, 0.99);
         }
 
         .header-container {
@@ -168,6 +269,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            transition: all 0.3s ease;
         }
 
         .logo span {
@@ -186,52 +288,74 @@
         }
 
         nav ul li {
-            margin-left: 25px;
+            margin-left: 20px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            font-size: 15px;
-            transition: var(--transition);
+            font-size: 14px;
+            transition: all 0.3s ease;
             position: relative;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
         }
 
         nav ul li a:hover {
             color: var(--primary);
         }
 
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .mobile-toggle {
             display: none;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
             color: var(--primary);
             background: none;
             border: none;
-            padding: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            background: var(--light);
+            color: var(--gold);
         }
 
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -300px;
-            width: 280px;
+            right: -250px;
+            width: 230px;
             height: 100vh;
-            background: white;
+            background: linear-gradient(135deg, var(--light) 0%, white 100%);
             z-index: 1200;
-            transition: right 0.3s ease;
-            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            padding: 8px;
             overflow-y: auto;
         }
 
@@ -243,37 +367,72 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--primary);
             cursor: pointer;
             background: none;
             border: none;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-menu:hover {
+            background: var(--light);
+            color: var(--gold);
+            transform: rotate(90deg);
         }
 
         .mobile-nav ul {
             display: block;
-            margin-top: 60px;
+            margin-top: 45px;
         }
 
         .mobile-nav ul li {
-            margin: 12px 0;
+            margin: 2px 0;
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.3s forwards;
         }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-nav ul li:nth-child(1) { animation-delay: 0.05s; }
+        .mobile-nav ul li:nth-child(2) { animation-delay: 0.1s; }
+        .mobile-nav ul li:nth-child(3) { animation-delay: 0.15s; }
+        .mobile-nav ul li:nth-child(4) { animation-delay: 0.2s; }
+        .mobile-nav ul li:nth-child(5) { animation-delay: 0.25s; }
+        .mobile-nav ul li:nth-child(6) { animation-delay: 0.3s; }
+        .mobile-nav ul li:nth-child(7) { animation-delay: 0.35s; }
 
         .mobile-nav ul li a {
             display: block;
-            padding: 14px;
+            padding: 8px;
             color: var(--dark);
-            font-size: 17px;
+            font-size: 14px;
             text-decoration: none;
-            border-radius: 8px;
-            transition: var(--transition);
+            border-radius: 5px;
+            transition: all 0.3s ease;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .mobile-nav ul li a:hover {
-            background: var(--light);
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
         }
 
         .mobile-overlay {
@@ -282,11 +441,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1100;
             opacity: 0;
             visibility: hidden;
-            transition: var(--transition);
+            transition: all 0.4s ease;
         }
 
         .mobile-overlay.active {
@@ -302,76 +461,203 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9) 0%, rgba(62, 39, 35, 0.95) 100%), url('https://images.unsplash.com/photo-1556909211-8a01a7b0c8cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.85) 0%, rgba(62, 39, 35, 0.9) 100%), url('https://images.unsplash.com/photo-1556909211-8a01a7b0c8cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding-top: 80px;
+            position: relative;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 750px;
+            max-width: 800px;
             position: relative;
             z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 3.8rem;
+            margin-bottom: 25px;
             line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 span {
             color: var(--gold);
+            position: relative;
+        }
+
+        .hero h1 span:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 215, 0, 0.3);
+            z-index: -1;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 35px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
             opacity: 0.95;
-            max-width: 650px;
+            max-width: 700px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .hero-btns {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .hero-btns .btn {
-            padding: 16px 35px;
-            font-size: 1rem;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-btns .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stats .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-stats .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-stats .stat-text {
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 500;
         }
 
         /* About Section */
         .about {
-            background: white;
+            background: linear-gradient(to bottom, #fff 0%, var(--light) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .about:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjAuNSIgZmlsbD0icmdiYSgxMzksIDY5LCAxOSwgMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+            opacity: 0.1;
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 70px;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
         .about-image {
             position: relative;
-            border-radius: var(--radius);
+            border-radius: calc(var(--radius) * 2);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.2);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .about-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, transparent 100%);
         }
 
         .about-image img {
             width: 100%;
             height: auto;
             display: block;
-            transition: var(--transition);
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
         }
 
         .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
             color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .about-text h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
         }
 
         .about-text h2 span {
@@ -379,10 +665,42 @@
         }
 
         .about-text p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #5D4037;
-            font-size: 1.05rem;
-            line-height: 1.7;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 1.6rem;
+            margin: 30px 0 20px 0;
+            color: var(--secondary);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about-text h3:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .mission-vision {
+            background: rgba(255, 248, 240, 0.7);
+            padding: 30px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--gold);
+            margin: 25px 0;
+        }
+
+        .mission-vision h3:first-child {
+            margin-top: 0;
         }
 
         .stats {
@@ -416,26 +734,45 @@
 
         /* Programs Section */
         .programs {
-            background: var(--light);
+            background: linear-gradient(to bottom, var(--light) 0%, #f9f5f0 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .programs:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
         }
 
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .program-card {
             background: white;
-            border-radius: var(--radius);
+            border-radius: calc(var(--radius) * 1.5);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            box-shadow: 0 15px 30px rgba(62, 39, 35, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            transform: translateY(0);
+        }
+
+        .program-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(62, 39, 35, 0.25);
         }
 
         .program-image {
-            height: 220px;
+            height: 250px;
             overflow: hidden;
             position: relative;
         }
@@ -444,116 +781,204 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: all 0.5s ease;
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
         }
 
         .program-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: var(--gold);
             color: var(--dark);
-            padding: 6px 15px;
+            padding: 8px 20px;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            z-index: 2;
         }
 
         .program-content {
-            padding: 30px 25px;
+            padding: 35px 30px;
         }
 
         .program-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
             color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover .program-content h3 {
+            color: var(--secondary);
         }
 
         .program-content p {
             color: #5D4037;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         .program-features {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .program-features li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .program-features li i {
             color: var(--gold);
-            margin-right: 10px;
-            font-size: 0.9rem;
+            margin-right: 12px;
+            font-size: 1rem;
             margin-top: 5px;
+            flex-shrink: 0;
         }
 
         .program-price {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 25px;
+            padding-top: 25px;
             border-top: 1px solid #eee;
         }
 
         .price {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Playfair Display', serif;
         }
 
         .price span {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #777;
             font-weight: 400;
             font-family: 'Inter', sans-serif;
         }
 
+        .program-card .btn {
+            padding: 12px 25px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .program-card .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+        
+        .program-cta {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .program-cta p {
+            margin-bottom: 10px;
+            color: #5D4037;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .program-cta p i {
+            color: var(--gold);
+            margin-right: 10px;
+            width: 20px;
+        }
+
         /* Facilities Section */
         .facilities {
-            background: white;
+            background: linear-gradient(to bottom, #fff 0%, var(--light) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .facilities:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom left, rgba(139, 69, 19, 0.03) 0%, transparent 40%);
         }
 
         .facilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .facility-card {
-            background: var(--light);
-            border-radius: var(--radius);
-            padding: 35px 25px;
+            background: white;
+            border-radius: calc(var(--radius) * 1.5);
+            padding: 40px 30px;
             text-align: center;
-            transition: var(--transition);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .facility-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .facility-card:hover:before {
+            transform: scaleX(1);
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.15);
         }
 
         .facility-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .facility-card:hover .facility-icon {
+            color: var(--gold);
+            transform: scale(1.1);
         }
 
         .facility-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             color: var(--primary);
         }
 
         .facility-content p {
             color: #5D4037;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
         /* Testimonials Section */
@@ -562,6 +987,20 @@
             background-size: cover;
             background-position: center;
             color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .testimonials:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjAuNSIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.2;
         }
 
         .testimonials .section-header h2 {
@@ -576,35 +1015,76 @@
             color: rgba(255,255,255,0.9);
         }
 
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: calc(var(--radius) * 1.5);
+            padding: 50px 40px;
             text-align: center;
             margin: 0 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
-            margin-bottom: 30px;
-            line-height: 1.7;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.5;
+            position: absolute;
+        }
+
+        .testimonial-text:before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-text:after {
+            bottom: -40px;
+            right: -20px;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 20px;
         }
 
         .author-image {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             overflow: hidden;
-            margin-right: 15px;
-            border: 3px solid var(--gold);
+            margin-right: 20px;
+            border: 4px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .author-image:hover {
+            transform: scale(1.1);
         }
 
         .author-image img {
@@ -614,118 +1094,190 @@
         }
 
         .author-info h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
             color: white;
         }
 
         .author-info p {
             color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
+            font-size: 1rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .testimonial-nav button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-nav button:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
         }
 
         /* Contact Section */
         .contact {
-            background: white;
+            background: linear-gradient(to bottom, var(--light) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
         }
 
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 70px;
         }
 
         .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+            font-size: 2rem;
+            margin-bottom: 30px;
             color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .contact-info h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
         }
 
         .contact-details {
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: calc(var(--radius) * 1.2);
+            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(62, 39, 35, 0.1);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: var(--light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 20px;
             color: var(--primary);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
         }
 
         .contact-text h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
             color: var(--primary);
         }
 
         .contact-text p {
             color: #5D4037;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .social-links {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background: var(--light);
             border-radius: 50%;
             color: var(--primary);
             text-decoration: none;
-            transition: var(--transition);
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 10px rgba(62, 39, 35, 0.1);
         }
 
         .social-links a:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
         }
 
         .contact-form {
-            background: var(--light);
-            padding: 40px 30px;
-            border-radius: var(--radius);
+            background: white;
+            padding: 45px 35px;
+            border-radius: calc(var(--radius) * 1.5);
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.15);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
             color: var(--primary);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #e0d8d0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
+            padding: 16px 20px;
+            border: 2px solid #e0d8d0;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
             background: white;
         }
@@ -733,34 +1285,63 @@
         .form-control:focus {
             outline: none;
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
         }
 
         textarea.form-control {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
+        }
+
+        .contact-form .btn {
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--dark) 0%, #2c1a17 100%);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjAuNSIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.1;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
             color: var(--gold);
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .footer-column h3:after {
@@ -768,16 +1349,51 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 40px;
-            height: 3px;
+            width: 50px;
+            height: 4px;
             background: var(--primary);
+            border-radius: 2px;
         }
 
         .footer-about p {
-            color: #bcaaa4;
-            margin-bottom: 20px;
+            color: #d6c8c3;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .footer-newsletter {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        
+        .footer-newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-newsletter p {
+            color: #d6c8c3;
+            margin-bottom: 15px;
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .newsletter-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .newsletter-form .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
         }
 
         .footer-links {
@@ -785,58 +1401,464 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: #bcaaa4;
+            color: #d6c8c3;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            padding: 8px 0;
+            border-radius: 5px;
         }
 
         .footer-links a:hover {
             color: var(--gold);
-            padding-left: 5px;
+            padding-left: 10px;
+            background: rgba(139, 69, 19, 0.2);
         }
 
         .footer-contact li {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
-            color: #bcaaa4;
-            font-size: 0.95rem;
+            margin-bottom: 20px;
+            color: #d6c8c3;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .footer-contact li i {
-            margin-right: 10px;
+            margin-right: 15px;
             color: var(--gold);
             margin-top: 5px;
+            font-size: 1.1rem;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bcaaa4;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            color: #d6c8c3;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .copyright small {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        /* Authentication Modal */
+        .auth-modal, .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .auth-modal.active, .payment-modal.active {
+            display: block;
+        }
+        
+        .auth-overlay, .payment-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .auth-container, .payment-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .auth-header, .payment-header {
+            padding: 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .auth-header h2, .payment-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .auth-close, .payment-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-close:hover, .payment-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-body, .payment-body {
+            padding: 30px;
+        }
+        
+        .auth-form {
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+        
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Payment Modal */
+        .payment-summary {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .payment-summary h3 {
+            margin-top: 0;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .payment-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--gold);
+        }
+        
+        .payment-method input {
+            margin-right: 15px;
+        }
+        
+        .payment-method i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .card-details {
+            margin-top: 25px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        @media (max-width: 576px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .auth-container, .payment-container {
+                width: 95%;
+            }
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            background: linear-gradient(to bottom, #fff 0%, var(--light) 100%);
+            padding: 100px 0;
+        }
+        
+        .dashboard-welcome {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-welcome h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .dashboard-welcome p {
+            color: #5D4037;
+            margin-bottom: 20px;
+        }
+        
+        .progress-container {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: #e0d8d0;
+            border-radius: 6px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.1);
+        }
+        
+        .dashboard-card h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dashboard-card h4 i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+        
+        .module-list, .events-list, .assignments-list {
+            list-style: none;
+        }
+        
+        .module-item, .event-item, .assignment-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .module-item:last-child, .event-item:last-child, .assignment-item:last-child {
+            border-bottom: none;
+        }
+        
+        .module-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .module-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .module-status {
             font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .in-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .not-started {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+        
+        .event-date, .assignment-due {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin: 5px 0;
+        }
+        
+        .assignment-status {
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .pending {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .achievements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .achievement {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .achievement i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .achievement p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #5D4037;
+        }
+        
+        /* Video Styles */
+        .module-video {
+            margin-top: 10px;
+        }
+        
+        .module-video video {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.1);
+        }
+        
+        .facility-video video {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.1);
         }
 
         .copyright a {
             color: var(--gold);
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: white;
+            text-decoration: underline;
         }
 
         /* Responsive Styles */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
             
             .about-content {
-                gap: 50px;
+                gap: 60px;
+            }
+            
+            .programs-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             }
         }
 
@@ -844,19 +1866,33 @@
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 60px;
+            }
+            
+            .about-image {
+                transform: perspective(1000px) rotateY(0deg);
+                max-width: 600px;
+                margin: 0 auto;
             }
             
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .section-header h2 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
             
             .about-text h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .facilities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
 
@@ -866,7 +1902,9 @@
             }
             
             .mobile-toggle {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             .hero {
@@ -876,72 +1914,87 @@
             }
             
             .hero h1 {
-                font-size: 2.4rem;
+                font-size: 2.6rem;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
             .hero-btns {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
             
             .hero-btns .btn {
                 width: 100%;
+                padding: 18px 30px;
             }
             
             .stats {
                 grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            
-            .programs-grid {
-                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .contact-form {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .testimonial-card {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .testimonial-text {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
             section {
-                padding: 70px 0;
+                padding: 80px 0;
             }
             
             .section-header h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            /* Header adjustments for mobile */
+            .header-container {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .logo i {
+                font-size: 16px;
             }
         }
 
         @media (max-width: 576px) {
             .container {
                 width: 95%;
-                padding: 0 10px;
+                padding: 0 15px;
             }
             
             .hero h1 {
-                font-size: 2.1rem;
+                font-size: 2.3rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
             .section-header h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .about-text h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .stats {
@@ -949,11 +2002,11 @@
             }
             
             .logo {
-                font-size: 22px;
+                font-size: 24px;
             }
             
             .logo i {
-                font-size: 18px;
+                font-size: 20px;
             }
             
             .mobile-menu {
@@ -966,11 +2019,74 @@
             }
             
             .program-content {
-                padding: 25px 20px;
+                padding: 30px 25px;
             }
             
             .facility-card {
-                padding: 30px 20px;
+                padding: 35px 25px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .author-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            
+            .hero-btns {
+                gap: 15px;
+            }
+            
+            .author-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .author-info h4 {
+                font-size: 1.2rem;
+            }
+            
+            .program-price {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .testimonial-text:before,
+            .testimonial-text:after {
+                font-size: 2.5rem;
+            }
+            
+            .testimonial-nav {
+                gap: 10px;
+            }
+            
+            .testimonial-nav button {
+                width: 45px;
+                height: 45px;
             }
         }
         
@@ -986,16 +2102,163 @@
             .author-image {
                 width: 60px;
                 height: 60px;
-                margin-right: 12px;
+                margin-right: 0;
+                margin-bottom: 12px;
             }
             
             .author-info h4 {
                 font-size: 1.1rem;
             }
+            
+            .program-content {
+                padding: 25px 20px;
+            }
+            
+            .facility-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Extra large devices */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1300px;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <script>
+        // Show notification
+        function showNotification(message, type = 'info', duration = 5000) {
+            // Remove any existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <button class="close-btn">&times;</button>
+                <span>${message}</span>
+            `;
+            
+            // Add close functionality
+            const closeBtn = notification.querySelector('.close-btn');
+            closeBtn.addEventListener('click', () => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            });
+            
+            // Add to document
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove after duration
+            if (duration > 0) {
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.classList.remove('show');
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 300);
+                    }
+                }, duration);
+            }
+            
+            return notification;
+        }
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwYQ4ZvyTmQfsrChsuLuRDm37X01V6ph8",
+  authDomain: "bandix-1bd74.firebaseapp.com",
+  projectId: "bandix-1bd74",
+  storageBucket: "bandix-1bd74.firebasestorage.app",
+  messagingSenderId: "667083449973",
+  appId: "1:667083449973:web:b33aa0e1e6309d1c9e3a3c",
+  measurementId: "G-H508GWV36J"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+    
+    <script>
+        // Firebase Auth State Observer
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in
+                // Check if user has admin permissions
+                checkUserPermissions(user.uid).then(hasPermission => {
+                    showDashboard(user.displayName || user.email, hasPermission);
+                });
+            } else {
+                // User is signed out
+                // Keep the landing page visible
+                console.log('User is signed out');
+            }
+        });
+        
+        // Check if user has admin permissions
+        function checkUserPermissions(uid) {
+            // In a real implementation, this would check a database
+            // For demo purposes, we'll simulate this with localStorage
+            return new Promise((resolve) => {
+                // Check if this is the first user (admin)
+                const isFirstUser = localStorage.getItem('first_user_registered') !== 'true';
+                if (isFirstUser) {
+                    // Grant admin permissions to the first user
+                    localStorage.setItem(`user_permissions_${uid}`, 'admin');
+                    localStorage.setItem('first_user_registered', 'true');
+                    resolve(true);
+                } else {
+                    // Check if user has been granted admin permissions
+                    const userPermissions = localStorage.getItem(`user_permissions_${uid}`);
+                    if (userPermissions === 'admin') {
+                        resolve(true);
+                    } else {
+                        // By default, new users don't have admin permissions
+                        resolve(false);
+                    }
+                }
+            });
+        }
+        
+        // Grant admin permissions to a user (admin function)
+        function grantAdminPermissions(uid) {
+            localStorage.setItem(`user_permissions_${uid}`, 'admin');
+        }
+    </script>
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
@@ -1007,13 +2270,15 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#programs">Programs</a></li>
                     <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#videos">Course Videos</a></li>
                     <li><a href="#testimonials">Success Stories</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
             
             <div class="header-actions">
-                <a href="#contact" class="btn btn-gold">Enroll Now</a>
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-gold" id="registerBtn">Register</button>
                 <button class="mobile-toggle" id="mobileToggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -1033,9 +2298,11 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#programs">Programs</a></li>
                 <li><a href="#facilities">Facilities</a></li>
+                <li><a href="#videos">Course Videos</a></li>
                 <li><a href="#testimonials">Success Stories</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact" style="background: var(--gold); color: var(--dark); margin-top: 20px;">Enroll Now</a></li>
+                <li><button id="mobileLoginBtn" style="width: 100%; margin-bottom: 10px;" class="btn btn-outline">Login</button></li>
+                <li><button id="mobileRegisterBtn" style="width: 100%; background: var(--gold); color: var(--dark);">Register</button></li>
             </ul>
         </nav>
     </div>
@@ -1044,12 +2311,84 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Elevate Your <span>Culinary</span> Journey With JEMERAD</h1>
-                <p>Otupko's premier catering and culinary institution where passion meets profession. Transform your love for food into an extraordinary career with our world-class programs.</p>
+                <h1>Master <span>Catering</span> Skills With JEMERAD</h1>
+                <p>Transform your passion for food into a thriving career with Nigeria's premier catering institution. Our comprehensive program combines hands-on training with real-world experience.</p>
                 <div class="hero-btns">
-                    <a href="#programs" class="btn btn-primary">Explore Programs</a>
-                    <a href="#contact" class="btn btn-secondary">Schedule a Tour</a>
+                    <a href="#programs" class="btn btn-primary">Explore Our Program</a>
+                    <button id="enrollBtn" class="btn btn-secondary" onclick="showEnrollmentInfo()">Enroll Today - ₦80,000</button>
                 </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-text">Graduates Employed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-text">Job Placement Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-text">Expert Instructors</div>
+                    </div>
+                </div>
+                
+                <div class="hero-video-preview" style="margin-top: 30px;">
+                    <p style="color: white; margin-bottom: 15px; font-weight: 500;"><i class="fas fa-play-circle"></i> Preview our course videos</p>
+                    <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px;">
+                        <div style="min-width: 150px;">
+                            <div id="heroVideoPreview" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; height: 100px;">
+                                <i class="fas fa-lock" style="color: white; font-size: 2rem;"></i>
+                            </div>
+                            <p style="color: white; font-size: 0.8rem; margin-top: 5px; text-align: center;">Kitchen Basics</p>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // Update hero video preview based on auth state
+                    firebase.auth().onAuthStateChanged(function(user) {
+                        const heroVideoPreview = document.getElementById('heroVideoPreview');
+                        if (user) {
+                            checkUserPermissions(user.uid).then(hasPermission => {
+                                // Check if user has paid
+                                let hasPaid = false;
+                                const paymentInfo = localStorage.getItem(`payment_${user.uid}`);
+                                if (paymentInfo) {
+                                    const payment = JSON.parse(paymentInfo);
+                                    hasPaid = true;
+                                }
+                                
+                                if (hasPermission && hasPaid) {
+                                    heroVideoPreview.innerHTML = `
+                                        <video width="100%" style="border-radius: 10px;" poster="VID-20251123-WA0120.mp4">
+                                            <source src="VID-20251123-WA0120.mp4" type="video/mp4">
+                                        </video>
+                                    `;
+                                } else if (hasPermission && !hasPaid) {
+                                    heroVideoPreview.innerHTML = `
+                                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 10px; text-align: center;">
+                                            <i class="fas fa-exclamation-triangle" style="color: white; font-size: 1.5rem; margin-bottom: 5px;"></i>
+                                            <span style="color: white; font-size: 0.7rem;">Payment Required</span>
+                                        </div>
+                                    `;
+                                } else {
+                                    heroVideoPreview.innerHTML = `
+                                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 10px; text-align: center;">
+                                            <i class="fas fa-lock" style="color: white; font-size: 1.5rem; margin-bottom: 5px;"></i>
+                                            <span style="color: white; font-size: 0.7rem;">No Access</span>
+                                        </div>
+                                    `;
+                                }
+                            });
+                        } else {
+                            heroVideoPreview.innerHTML = `
+                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 10px; text-align: center;">
+                                    <i class="fas fa-lock" style="color: white; font-size: 1.5rem; margin-bottom: 5px;"></i>
+                                    <span style="color: white; font-size: 0.7rem;">Login Required</span>
+                                </div>
+                            `;
+                        }
+                    });
+                </script>
             </div>
         </div>
     </section>
@@ -1063,22 +2402,31 @@
                 </div>
                 <div class="about-text">
                     <h2>Where <span>Catering</span> Dreams Begin</h2>
-                    <p>Founded by Attah John with a vision to revolutionize culinary education in Nigeria, JEMERAD Catering Services is Otupko's newest premier institution for gastronomic excellence.</p>
+                    <p>Founded by Attah John with a vision to revolutionize culinary education in Nigeria, JEMERAD Catering Services is Otupko's premier institution for gastronomic excellence.</p>
+                    
+                    <div class="mission-vision">
+                        <h3>Our Mission</h3>
+                        <p>Our mission is to empower aspiring chefs and hospitality professionals with world-class culinary education through our comprehensive catering program. We are dedicated to nurturing creativity, discipline, and excellence in catering, ensuring our graduates are equipped with the skills and confidence to thrive in the global food industry.</p>
+                        
+                        <h3>Our Vision</h3>
+                        <p>Our vision is to become a leading center of culinary excellence, recognized for producing innovative, skilled, and service-oriented catering professionals who redefine standards in hospitality and cuisine both locally and internationally.</p>
+                    </div>
+                    
                     <p>Our state-of-the-art facilities, internationally-trained faculty, and industry partnerships provide an unparalleled learning environment for aspiring chefs and culinary professionals.</p>
-                    <p>As a new institution, we're committed to nurturing talent through hands-on experience, theoretical knowledge, and exposure to global culinary trends, preparing our students for successful careers anywhere in the world.</p>
+                    <p>We're committed to nurturing talent through hands-on experience, theoretical knowledge, and exposure to global culinary trends, preparing our students for successful careers anywhere in the world.</p>
                     
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-number">0</div>
-                            <div class="stat-text">Students</div>
+                            <div class="stat-number">500+</div>
+                            <div class="stat-text">Graduates</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">6</div>
+                            <div class="stat-number">12</div>
                             <div class="stat-text">Expert Instructors</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-text">Job Placement Support</div>
+                            <div class="stat-number">95%</div>
+                            <div class="stat-text">Employment Rate</div>
                         </div>
                     </div>
                 </div>
@@ -1090,76 +2438,93 @@
     <section class="programs" id="programs">
         <div class="container">
             <div class="section-header">
-                <h2>Premium Catering Programs</h2>
-                <p>Designed for aspiring chefs, pastry artists, and culinary entrepreneurs seeking world-class education</p>
+                <h2>Premium Catering Program</h2>
+                <p>Complete catering education program for aspiring chefs and culinary entrepreneurs</p>
             </div>
             
             <div class="programs-grid">
                 <div class="program-card">
                     <div class="program-image">
                         <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Professional Chef Program">
-                        <div class="program-badge">Most Popular</div>
+                        <div class="program-badge">Complete Program</div>
                     </div>
                     <div class="program-content">
-                        <h3>Professional Catering Chef Diploma</h3>
-                        <p>Comprehensive 12-month program covering all aspects of professional catering, from foundational techniques to advanced culinary arts and event management.</p>
+                        <h3>Professional Catering Chef Program</h3>
+                        <p>Comprehensive program covering all aspects of professional catering, from foundational techniques to advanced culinary arts and event management.</p>
                         
                         <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Hands-on training in 6 specialized kitchens</li>
+                            <li><i class="fas fa-check"></i> Hands-on training in specialized kitchens</li>
                             <li><i class="fas fa-check"></i> Event catering and management</li>
                             <li><i class="fas fa-check"></i> International cuisine specialization</li>
+                            <li><i class="fas fa-check"></i> Business module included</li>
                             <li><i class="fas fa-check"></i> Career placement assistance</li>
+                            <li><i class="fas fa-check"></i> Certificate upon completion</li>
                         </ul>
                         
                         <div class="program-price">
-                            <div class="price">₦950,000 <span>/ program</span></div>
-                            <a href="#" class="btn btn-primary">Apply Now</a>
+                            <div class="price">₦80,000 <span>/ complete program</span></div>
+                            <button id="programEnrollBtn" class="btn btn-primary" onclick="showEnrollmentInfo()">Enroll Now</button>
+                        </div>
+                        <div class="program-cta">
+                            <p><i class="fas fa-calendar-check"></i> Next intake: January 2026</p>
+                            <p><i class="fas fa-clock"></i> Duration: 6 months intensive</p>
+                            <p><i class="fas fa-certificate"></i> Industry-recognized certificate</p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="program-card">
-                    <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pastry & Baking Arts">
-                        <div class="program-badge">New</div>
-                    </div>
+            </div>
+            
+            <div class="section-header" style="margin-top: 60px;">
+                <h3>Program Modules</h3>
+                <p>What you'll learn in our comprehensive catering program</p>
+            </div>
+            
+            <div class="programs-grid">
+                <div class="program-card" style="background: var(--light);">
                     <div class="program-content">
-                        <h3>Pastry & Baking Arts</h3>
-                        <p>Master the art of baking, pastry making, and dessert creation in this intensive 9-month program focused on sweet and savory baked goods for events.</p>
-                        
+                        <h4>Module 1: Kitchen Fundamentals</h4>
                         <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Artisan bread and viennoiserie</li>
-                            <li><i class="fas fa-check"></i> Chocolate and sugar work</li>
-                            <li><i class="fas fa-check"></i> Wedding cake and dessert design</li>
-                            <li><i class="fas fa-check"></i> Small business management</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Kitchen safety and hygiene</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Essential knife skills</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Equipment overview</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Ingredient identification</li>
                         </ul>
-                        
-                        <div class="program-price">
-                            <div class="price">₦820,000 <span>/ program</span></div>
-                            <a href="#" class="btn btn-primary">Apply Now</a>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="program-card">
-                    <div class="program-image">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Catering Management">
-                    </div>
+                <div class="program-card" style="background: var(--light);">
                     <div class="program-content">
-                        <h3>Catering & Event Management</h3>
-                        <p>6-month intensive program focusing on the business side of catering, including operations, finance, marketing, and hospitality management for events.</p>
-                        
+                        <h4>Module 2: Cooking Techniques</h4>
                         <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Financial management and costing</li>
-                            <li><i class="fas fa-check"></i> Menu engineering and design</li>
-                            <li><i class="fas fa-check"></i> Staff management and training</li>
-                            <li><i class="fas fa-check"></i> Digital marketing for catering</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Boiling, steaming, frying</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Baking and roasting</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Grilling and smoking</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Sauce preparation</li>
                         </ul>
-                        
-                        <div class="program-price">
-                            <div class="price">₦750,000 <span>/ program</span></div>
-                            <a href="#" class="btn btn-primary">Apply Now</a>
-                        </div>
+                    </div>
+                </div>
+                
+                <div class="program-card" style="background: var(--light);">
+                    <div class="program-content">
+                        <h4>Module 3: Menu Planning</h4>
+                        <ul class="program-features">
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Nutritional balance</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Dietary restrictions</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Cost calculation</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Presentation skills</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="program-card" style="background: var(--light);">
+                    <div class="program-content">
+                        <h4>Module 4: Business Skills</h4>
+                        <ul class="program-features">
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Business planning</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Marketing strategies</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Client relations</li>
+                            <li><i class="fas fa-play-circle" style="color: var(--primary);"></i> Event management</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1195,35 +2560,7 @@
                     </div>
                 </div>
                 
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="facility-content">
-                        <h3>Demo Theater</h3>
-                        <p>State-of-the-art demonstration theater with overhead mirrors and 4K recording capabilities for event presentations.</p>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="facility-content">
-                        <h3>Herb Garden</h3>
-                        <p>On-site herb and vegetable garden providing fresh ingredients and educational opportunities for sustainable catering.</p>
-                    </div>
-                </div>
-                
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-wine-glass-alt"></i>
-                    </div>
-                    <div class="facility-content">
-                        <h3>Beverage Lab</h3>
-                        <p>Specialized lab for learning mixology, wine pairing, and beverage service for events and catering.</p>
-                    </div>
-                </div>
+                <!-- Removed Demo Theater, Herb Garden, and Beverage Lab facilities as requested -->
                 
                 <div class="facility-card">
                     <div class="facility-icon">
@@ -1238,6 +2575,167 @@
         </div>
     </section>
 
+    <!-- User Dashboard -->
+    <section class="dashboard" id="dashboard" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Student Dashboard</h2>
+                <p>Welcome back! Continue your learning journey</p>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="dashboard-welcome">
+                    <h3>Welcome, <span id="studentName">Student</span>!</h3>
+                    <p>Professional Catering Chef Program</p>
+                    <div class="progress-container">
+                        <p>Course Progress: <span id="courseProgress">0%</span></p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="recently-watched" id="recentlyWatched" style="margin-top: 15px; padding: 10px; background: #FFF8F0; border-radius: 8px; display: none;">
+                        <h4 style="margin: 0 0 10px 0; color: #8B4513;">Recently Watched</h4>
+                        <p id="recentVideoName" style="margin: 0; color: #5D4037;"></p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-book"></i> Course Modules</h4>
+                        <ul class="module-list">
+                            <li class="module-item" data-module-id="module_1">
+                                <a href="#">Module 1: Kitchen Fundamentals</a>
+                                <span class="module-status not-started">Not Started</span>
+                                <div class="module-video" style="margin-top: 10px; display: none;">
+                                    <video id="video_module_1" width="100%" controls style="border-radius: 10px;">
+                                        <source src="VID-20251123-WA0120.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <!-- Assignment for this module -->
+                                <div class="module-assignment" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none;" id="assignment_module_1">
+                                    <h5 style="margin: 0 0 10px 0; color: #8B4513;">Kitchen Fundamentals Assignment</h5>
+                                    <p style="margin: 0 0 10px 0; color: #5D4037;">Take a photo of your organized kitchen workspace after applying the fundamentals you learned.</p>
+                                    <input type="file" id="assignment_image_module_1" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+                                    <button class="btn btn-primary" onclick="submitModuleAssignment('module_1')" style="width: 100%;">Submit Assignment</button>
+                                </div>
+                            </li>
+                            <li class="module-item" data-module-id="module_2">
+                                <a href="#">Module 2: Cooking Techniques</a>
+                                <span class="module-status not-started">Not Started</span>
+                                <div class="module-video" style="margin-top: 10px; display: none;">
+                                    <video id="video_module_2" width="100%" controls style="border-radius: 10px;">
+                                        <source src="cooking-techniques.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <!-- Assignment for this module -->
+                                <div class="module-assignment" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none;" id="assignment_module_2">
+                                    <h5 style="margin: 0 0 10px 0; color: #8B4513;">Cooking Techniques Assignment</h5>
+                                    <p style="margin: 0 0 10px 0; color: #5D4037;">Prepare a dish using at least 3 different cooking techniques and photograph the process.</p>
+                                    <input type="file" id="assignment_image_module_2" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+                                    <button class="btn btn-primary" onclick="submitModuleAssignment('module_2')" style="width: 100%;">Submit Assignment</button>
+                                </div>
+                            </li>
+                            <li class="module-item" data-module-id="module_3">
+                                <a href="#">Module 3: Menu Planning</a>
+                                <span class="module-status not-started">Not Started</span>
+                                <div class="module-video" style="margin-top: 10px; display: none;">
+                                    <video id="video_module_3" width="100%" controls style="border-radius: 10px;">
+                                        <source src="menu-planning.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <!-- Assignment for this module -->
+                                <div class="module-assignment" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none;" id="assignment_module_3">
+                                    <h5 style="margin: 0 0 10px 0; color: #8B4513;">Menu Planning Assignment</h5>
+                                    <p style="margin: 0 0 10px 0; color: #5D4037;">Create a 3-course menu for a special occasion and take a photo of your menu plan.</p>
+                                    <input type="file" id="assignment_image_module_3" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+                                    <button class="btn btn-primary" onclick="submitModuleAssignment('module_3')" style="width: 100%;">Submit Assignment</button>
+                                </div>
+                            </li>
+                            <li class="module-item" data-module-id="module_4">
+                                <a href="#">Module 4: Business Skills</a>
+                                <span class="module-status not-started">Not Started</span>
+                                <div class="module-video" style="margin-top: 10px; display: none;">
+                                    <video id="video_module_4" width="100%" controls style="border-radius: 10px;">
+                                        <source src="business-skills.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <!-- Assignment for this module -->
+                                <div class="module-assignment" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none;" id="assignment_module_4">
+                                    <h5 style="margin: 0 0 10px 0; color: #8B4513;">Business Skills Assignment</h5>
+                                    <p style="margin: 0 0 10px 0; color: #5D4037;">Develop a business plan for your catering venture and photograph your plan document.</p>
+                                    <input type="file" id="assignment_image_module_4" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+                                    <button class="btn btn-primary" onclick="submitModuleAssignment('module_4')" style="width: 100%;">Submit Assignment</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-calendar-alt"></i> Upcoming Events</h4>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <p>Live Cooking Session</p>
+                                <p class="event-date">Tomorrow, 2:00 PM</p>
+                            </li>
+                            <li class="event-item">
+                                <p>Guest Chef Workshop</p>
+                                <p class="event-date">Dec 15, 2025 - 10:00 AM</p>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-tasks"></i> Assignments</h4>
+                        <ul class="assignments-list">
+                            <li class="assignment-item">
+                                <p>Menu Planning Project</p>
+                                <p class="assignment-due">Due: Dec 10, 2025</p>
+                                <span class="assignment-status pending">Pending</span>
+                                <!-- Assignment submission form -->
+                                <div class="assignment-submission" style="margin-top: 15px; display: none;" id="assignmentSubmission">
+                                    <input type="file" id="assignmentImage" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+                                    <button class="btn btn-primary" onclick="submitAssignment()" style="width: 100%;">Submit Assignment</button>
+                                </div>
+                                <!-- Social sharing buttons (shown when assignment is approved) -->
+                                <div class="social-sharing" style="margin-top: 15px; display: none;" id="socialSharing">
+                                    <p style="margin-bottom: 10px; font-weight: bold;">Share your achievement:</p>
+                                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                        <button class="btn" style="background: #3b5998; color: white;" onclick="shareToFacebook()"><i class="fab fa-facebook-f"></i> Facebook</button>
+                                        <button class="btn" style="background: #1da1f2; color: white;" onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
+                                        <button class="btn" style="background: #e1306c; color: white;" onclick="shareToInstagram()"><i class="fab fa-instagram"></i> Instagram</button>
+                                    </div>
+                                </div>
+                                <!-- Submission button -->
+                                <button class="btn btn-outline" onclick="showAssignmentSubmission()" style="margin-top: 10px; width: 100%;">Submit Work</button>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h4><i class="fas fa-certificate"></i> Achievements</h4>
+                        <div class="achievements">
+                            <div class="achievement">
+                                <i class="fas fa-award"></i>
+                                <p>First Module Completed</p>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-medal"></i>
+                                <p>Perfect Attendance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Note: Place video files in the same directory as this HTML file -->
+    <!-- Required video files: VID-20251123-WA0120.mp4, cooking-techniques.mp4, menu-planning.mp4, business-skills.mp4 -->
+    
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
@@ -1246,21 +2744,189 @@
                 <p>Hear from our graduates who are making waves in the catering world</p>
             </div>
             
-            <div class="testimonial-card">
-                <p class="testimonial-text">"As one of the first students at JEMERAD, I've had the unique opportunity to help shape this incredible institution. The hands-on training and mentorship from industry experts has given me the confidence to start my own catering venture after graduation."</p>
-                <div class="testimonial-author">
-                    <div class="author-image">
-                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Sarah Johnson">
+            <div class="testimonial-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As one of the first students at JEMERAD, I've had the unique opportunity to help shape this incredible institution. The hands-on training and mentorship from industry experts has given me the confidence to start my own catering venture after graduation."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Attah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Attah Johnson</h4>
+                                <p>Founding Student, Class of 2025</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="author-info">
-                        <h4>Attah Johnson</h4>
-                        <p>Founding Student, Class of 2025</p>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The professional training I received at JEMERAD transformed my passion for cooking into a successful career. The instructors are world-class and the facilities are unmatched in the region. I now run a thriving catering business."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Okonkwo">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Okonkwo</h4>
+                                <p>Pastry Arts Graduate, Class of 2024</p>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"JEMERAD's event management program gave me the business skills I needed to launch my catering company. The practical experience with real clients during the program was invaluable for my career success."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amina Abdullahi">
+                            </div>
+                            <div class="author-info">
+                                <h4>Amina Abdullahi</h4>
+                                <p>Event Management Graduate, Class of 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-nav">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Video Gallery -->
+    <section class="facilities" id="videos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Course Videos</h2>
+                <p>Watch our instructional videos to get a taste of our catering program</p>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <h3>Kitchen Fundamentals</h3>
+                    <div class="facility-video" id="publicVideoContainer">
+                        <!-- Video content will be dynamically loaded based on user permissions -->
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <h3>Cooking Techniques</h3>
+                    <div class="facility-video" id="cookingTechniquesVideo">
+                        <!-- Video content will be dynamically loaded based on user permissions -->
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <h3>Menu Planning</h3>
+                    <div class="facility-video" id="menuPlanningVideo">
+                        <!-- Video content will be dynamically loaded based on user permissions -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Load video content based on user authentication status
+        document.addEventListener('DOMContentLoaded', function() {
+            const publicVideoContainer = document.getElementById('publicVideoContainer');
+            const cookingTechniquesVideo = document.getElementById('cookingTechniquesVideo');
+            const menuPlanningVideo = document.getElementById('menuPlanningVideo');
+            
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in, check permissions
+                    checkUserPermissions(user.uid).then(hasPermission => {
+                        loadVideoContent(publicVideoContainer, hasPermission);
+                        loadVideoContent(cookingTechniquesVideo, hasPermission);
+                        loadVideoContent(menuPlanningVideo, hasPermission);
+                    });
+                } else {
+                    // User is not signed in
+                    loadVideoContent(publicVideoContainer, false);
+                    loadVideoContent(cookingTechniquesVideo, false);
+                    loadVideoContent(menuPlanningVideo, false);
+                }
+            });
+        });
+        
+        function loadVideoContent(container, hasAccess) {
+            container.innerHTML = '';
+            
+            // Check if user has paid for the course
+            const user = firebase.auth().currentUser;
+            let hasPaid = false;
+            
+            if (user) {
+                const paymentInfo = localStorage.getItem(`payment_${user.uid}`);
+                if (paymentInfo) {
+                    const payment = JSON.parse(paymentInfo);
+                    // In a real implementation, this would check if payment is verified
+                    // For demo, we'll assume if payment info exists, user has paid
+                    hasPaid = true;
+                }
+            }
+            
+            // Determine which video to show based on container ID
+            let videoSrc = 'VID-20251123-WA0120.mp4';
+            if (container.id === 'cookingTechniquesVideo') {
+                videoSrc = 'cooking-techniques.mp4';
+            } else if (container.id === 'menuPlanningVideo') {
+                videoSrc = 'menu-planning.mp4';
+            }
+            
+            if (hasAccess && hasPaid) {
+                // User has access to videos and has paid
+                const video = document.createElement('video');
+                video.width = '100%';
+                video.controls = true;
+                video.style.borderRadius = '10px';
+                
+                const source = document.createElement('source');
+                source.src = videoSrc;
+                source.type = 'video/mp4';
+                
+                video.appendChild(source);
+                
+                const fallback = document.createElement('p');
+                fallback.textContent = 'Your browser does not support the video tag.';
+                
+                video.appendChild(fallback);
+                container.appendChild(video);
+            } else if (hasAccess && !hasPaid) {
+                // User has admin access but hasn't paid
+                const message = document.createElement('div');
+                message.style.padding = '30px';
+                message.style.backgroundColor = '#FFF8F0';
+                message.style.borderRadius = '10px';
+                message.style.textAlign = 'center';
+                message.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #8B4513; margin-bottom: 20px;"></i>
+                    <h4 style="color: #8B4513; margin-bottom: 15px;">Payment Required</h4>
+                    <p style="color: #5D4037; margin-bottom: 20px;">You must complete payment to access course videos.</p>
+                    <button class="btn btn-primary" onclick="showPaymentModal()">Make Payment</button>
+                `;
+                container.appendChild(message);
+            } else {
+                // User doesn't have access to videos
+                const message = document.createElement('div');
+                message.style.padding = '30px';
+                message.style.backgroundColor = '#FFF8F0';
+                message.style.borderRadius = '10px';
+                message.style.textAlign = 'center';
+                message.innerHTML = `
+                    <i class="fas fa-lock" style="font-size: 3rem; color: #8B4513; margin-bottom: 20px;"></i>
+                    <h4 style="color: #8B4513; margin-bottom: 15px;">Video Access Restricted</h4>
+                    <p style="color: #5D4037; margin-bottom: 20px;">You need to be logged in and have admin permission to view course videos.</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="document.getElementById('loginBtn').click()">Login</button>
+                        <button class="btn btn-secondary" onclick="document.getElementById('registerBtn').click()">Register</button>
+                    </div>
+                `;
+                container.appendChild(message);
+            }
+        }
+    </script>
+    
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -1344,25 +3010,210 @@
                             <label for="program">Program of Interest</label>
                             <select id="program" class="form-control" required>
                                 <option value="">Select a program</option>
-                                <option value="chef">Professional Catering Chef Diploma</option>
-                                <option value="pastry">Pastry & Baking Arts</option>
-                                <option value="management">Catering & Event Management</option>
-                                <option value="other">Other</option>
+                                <option value="Professional Catering Chef Diploma">Professional Catering Chef Diploma - ₦80,000</option>
+                                <option value="Pastry & Baking Arts">Pastry & Baking Arts - ₦75,000</option>
+                                <option value="Catering & Event Management">Catering & Event Management - ₦70,000</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required placeholder="Tell us about your culinary interests..."></textarea>
+                            <textarea id="message" class="form-control" required placeholder="Tell us about your culinary interests and career goals..."></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
                     </form>
+                    <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 10px; display: none;"></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Authentication Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-overlay" id="authOverlay"></div>
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2 id="authTitle">Account Login</h2>
+                <button class="auth-close" id="authClose">&times;</button>
+            </div>
+            <div class="auth-body">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required placeholder="Enter your password">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" class="form-control" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" class="form-control" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" class="form-control" required placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" required placeholder="Confirm your password">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="termsAgree" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                </form>
+                
+                <div class="auth-switch">
+                    <p id="authSwitchText">Don't have an account? <a href="#" id="switchToRegister">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enrollment Info Modal -->
+    <div class="auth-modal" id="enrollmentInfoModal" style="display: none;">
+        <div class="auth-overlay" id="enrollmentInfoOverlay"></div>
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Enrollment Information</h2>
+                <button class="auth-close" id="enrollmentInfoClose">&times;</button>
+            </div>
+            <div class="auth-body">
+                <div style="background: #FFF8F0; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #8B4513; margin-top: 0;"><i class="fas fa-graduation-cap"></i> Professional Catering Chef Program</h3>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #8B4513; margin: 15px 0;">₦80,000</div>
+                    
+                    <h4 style="color: #8B4513;"><i class="fas fa-money-bill-wave"></i> Payment Instructions</h4>
+                    <p style="color: #5D4037;">To enroll in this program, please make a payment to the following Opay account:</p>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span><strong>Account Number:</strong></span>
+                            <span style="font-weight: bold; color: #8B4513;">9876543210</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span><strong>Account Name:</strong></span>
+                            <span style="font-weight: bold; color: #8B4513;">JEMERAD Catering Services</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #FFEAA7; padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700; margin: 15px 0;">
+                        <h4 style="margin-top: 0; color: #8B4513;"><i class="fas fa-exclamation-triangle"></i> IMPORTANT</h4>
+                        <p style="margin: 0;"><strong>You MUST include your USERNAME in the payment description/note.</strong></p>
+                        <p style="margin: 10px 0 0 0;">Without your username in the payment note, your enrollment will NOT be processed and course access will be DENIED.</p>
+                    </div>
+                    
+                    <h4 style="color: #8B4513;"><i class="fas fa-list-ol"></i> Enrollment Steps</h4>
+                    <ol style="color: #5D4037; padding-left: 20px;">
+                        <li>Make payment of ₦80,000 to the Opay account above</li>
+                        <li>Include your USERNAME in the payment note/description</li>
+                        <li>Click "Continue to Payment Form" below</li>
+                        <li>Enter your username and transaction details</li>
+                        <li>Submit payment confirmation</li>
+                        <li>Wait for manual verification (up to 24 hours)</li>
+                    </ol>
+                    
+                    <button id="continueToPaymentBtn" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Continue to Payment Form</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-overlay" id="paymentOverlay"></div>
+        <div class="payment-container">
+            <div class="payment-header">
+                <h2>Enroll in Catering Program</h2>
+                <button class="payment-close" id="paymentClose">&times;</button>
+            </div>
+            <div class="payment-body">
+                <div class="payment-summary">
+                    <h3>Program Details</h3>
+                    <div class="payment-item">
+                        <span>Professional Catering Chef Program</span>
+                        <span>₦80,000</span>
+                    </div>
+                    <div class="payment-total">
+                        <strong>Total:</strong>
+                        <strong>₦80,000</strong>
+                    </div>
+                </div>
+                
+                <div class="payment-instructions" style="background: #FFF8F0; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h4 style="color: #8B4513; margin-top: 0;"><i class="fas fa-exclamation-circle"></i> Payment Instructions</h4>
+                    <p style="color: #5D4037;">To enroll in this program, please make a payment of <strong>₦80,000</strong> to the following Opay account:</p>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span><strong>Account Number:</strong></span>
+                            <span style="font-weight: bold; color: #8B4513;">9876543210</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span><strong>Account Name:</strong></span>
+                            <span style="font-weight: bold; color: #8B4513;">JEMERAD Catering Services</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #FFEAA7; padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700;">
+                        <p style="margin: 0;"><strong>Important:</strong> After making payment, you MUST include your USERNAME in the payment description/note.</p>
+                        <p style="margin: 10px 0 0 0;">Without your username in the payment note, your enrollment will NOT be processed and course access will be DENIED.</p>
+                    </div>
+                </div>
+                
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="paymentUsername">Your Username (Must match payment note)</label>
+                        <input type="text" id="paymentUsername" class="form-control" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transactionReference">Transaction Reference/Receipt Number</label>
+                        <input type="text" id="transactionReference" class="form-control" placeholder="Enter transaction reference" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="paymentConfirmation" required>
+                            I confirm that I have made the payment to the Opay account above and included my username in the payment note.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Payment Confirmation</button>
+                </form>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #f8d7da; border-radius: 8px; border: 1px solid #f5c6cb; color: #721c24; display: none;" id="paymentWarning">
+                    <p style="margin: 0;"><strong>Warning:</strong> Without verified payment including your username, you will NOT have access to course materials. Payments are verified manually and may take up to 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1375,6 +3226,14 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Subscribe to our newsletter for culinary tips and program updates.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" class="form-control" style="margin-bottom: 10px;">
+                            <button type="submit" class="btn btn-gold" style="width: 100%; padding: 10px;">Subscribe</button>
+                        </form>
                     </div>
                 </div>
                 
@@ -1414,7 +3273,8 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 JEMERAD Catering Services. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FFD700;"></i> for culinary excellence</p>
+                <p>&copy; 2025 JEMERAD Catering Services. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FFD700;"></i> for culinary excellence<br>
+                <small>Established 2025 | ABN: 123 456 789 | CRICOS Provider Code: 01234ABC</small></p>
             </div>
         </div>
     </footer>
@@ -1452,17 +3312,1142 @@
                 document.body.style.overflow = 'auto';
             });
         });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value;
+                
+                if (email) {
+                    // Show success message
+                    const originalHTML = this.innerHTML;
+                    this.innerHTML = '<p style="color: #FFD700; text-align: center;">Thank you for subscribing!</p>';
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        emailInput.value = '';
+                    }, 3000);
+                }
+            });
+        }
+        
+        // Authentication System
+        const authModal = document.getElementById('authModal');
+        const paymentModal = document.getElementById('paymentModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+        const authClose = document.getElementById('authClose');
+        const authOverlay = document.getElementById('authOverlay');
+        const paymentClose = document.getElementById('paymentClose');
+        const paymentOverlay = document.getElementById('paymentOverlay');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const enrollBtn = document.getElementById('enrollBtn');
+        const programEnrollBtn = document.getElementById('programEnrollBtn');
+        
+        // Show login modal
+        function showLoginModal() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('authTitle').textContent = 'Account Login';
+            document.getElementById('authSwitchText').innerHTML = 'Don\'t have an account? <a href="#" id="switchToRegister">Register</a>';
+            authModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Show register modal
+        function showRegisterModal() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('authTitle').textContent = 'Create Account';
+            document.getElementById('authSwitchText').innerHTML = 'Already have an account? <a href="#" id="switchToLogin">Login</a>';
+            authModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Hide modals
+        function hideModals() {
+            authModal.classList.remove('active');
+            paymentModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Event listeners for auth buttons
+        if (loginBtn) loginBtn.addEventListener('click', showLoginModal);
+        if (registerBtn) registerBtn.addEventListener('click', showRegisterModal);
+        if (mobileLoginBtn) mobileLoginBtn.addEventListener('click', showLoginModal);
+        if (mobileRegisterBtn) mobileRegisterBtn.addEventListener('click', showRegisterModal);
+        if (authClose) authClose.addEventListener('click', hideModals);
+        if (authOverlay) authOverlay.addEventListener('click', hideModals);
+        if (paymentClose) paymentClose.addEventListener('click', hideModals);
+        if (paymentOverlay) paymentOverlay.addEventListener('click', hideModals);
+        
+        // Switch between login and register
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'switchToRegister') {
+                e.preventDefault();
+                showRegisterModal();
+            } else if (e.target.id === 'switchToLogin') {
+                e.preventDefault();
+                showLoginModal();
+            }
+        });
+        
+        // Show payment modal
+        function showPaymentModal() {
+            // Check if user is logged in
+            const user = firebase.auth().currentUser;
+            if (user) {
+                paymentModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                showLoginModal();
+            }
+        }
+        
+        // Show enrollment info modal
+        function showEnrollmentInfo() {
+            document.getElementById('enrollmentInfoModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Hide enrollment info modal
+        function hideEnrollmentInfoModal() {
+            document.getElementById('enrollmentInfoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Event listeners for enrollment info modal
+        document.getElementById('enrollmentInfoClose').addEventListener('click', hideEnrollmentInfoModal);
+        document.getElementById('enrollmentInfoOverlay').addEventListener('click', hideEnrollmentInfoModal);
+        document.getElementById('continueToPaymentBtn').addEventListener('click', function() {
+            hideEnrollmentInfoModal();
+            showPaymentModal();
+        });
+        
+        // Event listeners for enrollment buttons
+        if (enrollBtn) enrollBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showEnrollmentInfo();
+        });
+        if (programEnrollBtn) programEnrollBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showEnrollmentInfo();
+        });
+        
+        // Firebase Login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    // Store user ID in localStorage for admin access
+                    localStorage.setItem('current_user_id', user.uid);
+                    hideModals();
+                    // Check if user has video access
+                    checkUserPermissions(user.uid).then(hasPermission => {
+                        showDashboard(user.email, hasPermission);
+                    });
+                    console.log('Login successful:', user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    showNotification('Login error: ' + errorMessage, 'error');
+                    console.error('Login error:', error);
+                });
+        });
+        
+        // Firebase Registration
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    // Store user ID in localStorage for admin access
+                    localStorage.setItem('current_user_id', user.uid);
+                    // Update user profile with name
+                    return user.updateProfile({
+                        displayName: name
+                    });
+                })
+                .then(() => {
+                    hideModals();
+                    showDashboard(name, false); // New users don't have video access by default
+                    console.log('Registration successful');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    showNotification('Registration error: ' + errorMessage, 'error');
+                    console.error('Registration error:', error);
+                });
+        });
+        
+        // Show dashboard
+        function showDashboard(userName, hasVideoAccess = false) {
+            // Hide all sections except dashboard
+            document.querySelectorAll('section:not(.dashboard)').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show dashboard
+            document.getElementById('dashboard').style.display = 'block';
+            
+            // Update user info
+            document.getElementById('studentName').textContent = userName.split(' ')[0] || userName;
+            
+            // Handle video access
+            handleVideoAccess(hasVideoAccess);
+            
+            // Check if user is admin and show admin panel
+            checkIfAdmin();
+            
+            // Show user ID for admin reference
+            showUserId();
+            
+            // Load video progress and update progress bar
+            setTimeout(loadVideoProgress, 100);
+            
+            // Load recently watched video
+            setTimeout(loadRecentlyWatched, 150);
+            
+            // Update navigation
+            setTimeout(updateNavigationForDashboard, 200);
+        }
+        
+        // Show user ID for admin reference
+        function showUserId() {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            // Add user ID and payment info to dashboard welcome section
+            const welcomeSection = document.querySelector('.dashboard-welcome');
+            if (welcomeSection && !document.getElementById('userIdDisplay')) {
+                const userIdDiv = document.createElement('div');
+                userIdDiv.id = 'userIdDisplay';
+                userIdDiv.style.marginTop = '15px';
+                userIdDiv.style.padding = '10px';
+                userIdDiv.style.backgroundColor = '#FFF8F0';
+                userIdDiv.style.borderRadius = '8px';
+                userIdDiv.style.fontSize = '0.9rem';
+                userIdDiv.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>User ID:</strong> ${user.uid.substring(0, 10)}... 
+                            <span style="color: #8B4513; font-size: 0.8rem;">(Share with admin for video access)</span>
+                        </div>
+                        <button class="btn btn-outline" onclick="showPaymentModal()" style="padding: 5px 10px; font-size: 0.8rem;">Make Payment</button>
+                    </div>
+                `;
+                welcomeSection.appendChild(userIdDiv);
+            }
+        }
+        
+        // Check if user is admin and show admin panel
+        function checkIfAdmin() {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            checkUserPermissions(user.uid).then(isAdmin => {
+                if (isAdmin) {
+                    showAdminPanel();
+                    showAdminButton();
+                }
+            });
+        }
+        
+        // Show admin button in header
+        function showAdminButton() {
+            const headerActions = document.querySelector('.header-actions');
+            if (headerActions && !document.getElementById('adminBtn')) {
+                const adminBtn = document.createElement('button');
+                adminBtn.id = 'adminBtn';
+                adminBtn.className = 'btn btn-gold';
+                adminBtn.textContent = 'Admin';
+                adminBtn.style.marginRight = '10px';
+                adminBtn.onclick = function() {
+                    // Scroll to admin panel or show a modal
+                    showNotification('Admin panel is at the bottom of your dashboard', 'info');
+                };
+                
+                // Insert before the welcome span
+                headerActions.insertBefore(adminBtn, headerActions.firstChild);
+            }
+        }
+        
+        // Show admin panel
+        function showAdminPanel() {
+            // Check if admin panel already exists
+            if (document.getElementById('adminPanel')) return;
+            
+            const dashboardGrid = document.querySelector('.dashboard-grid');
+            
+            const adminCard = document.createElement('div');
+            adminCard.className = 'dashboard-card';
+            adminCard.id = 'adminPanel';
+            adminCard.innerHTML = `
+                <h4><i class="fas fa-user-shield"></i> Admin Panel</h4>
+                <div style="margin-top: 20px;">
+                    <h5>Grant Video Access</h5>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <input type="text" id="userIdInput" placeholder="User ID" class="form-control" style="flex: 1;">
+                        <button class="btn btn-primary" onclick="grantVideoAccess()">Grant Access</button>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #5D4037;">Enter a user's ID to grant them video access permissions.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h5>User Management</h5>
+                    <button class="btn btn-secondary" onclick="listAllUsers()" style="margin-bottom: 15px;">List All Users</button>
+                    <div id="userList" style="max-height: 200px; overflow-y: auto; background: #FFF8F0; padding: 10px; border-radius: 8px; display: none;"></div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h5>Payment Verification</h5>
+                    <button class="btn btn-secondary" onclick="listPendingPayments()" style="margin-bottom: 15px;">View Pending Payments</button>
+                    <div id="paymentList" style="max-height: 200px; overflow-y: auto; background: #FFF8F0; padding: 10px; border-radius: 8px; display: none;"></div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h5>Assignment Review</h5>
+                    <button class="btn btn-secondary" onclick="listPendingAssignments()" style="margin-bottom: 15px;">View Pending Assignments</button>
+                    <div id="assignmentList" style="max-height: 200px; overflow-y: auto; background: #FFF8F0; padding: 10px; border-radius: 8px; display: none;"></div>
+                </div>
+            `;
+            
+            dashboardGrid.appendChild(adminCard);
+        }
+        
+        // List all users (from localStorage)
+        function listAllUsers() {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            userList.style.display = 'block';
+            
+            // Get all user permissions from localStorage
+            const users = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('user_permissions_')) {
+                    const userId = key.replace('user_permissions_', '');
+                    const hasPermission = localStorage.getItem(key) === 'admin';
+                    users.push({ id: userId, isAdmin: hasPermission });
+                }
+            }
+            
+            if (users.length === 0) {
+                userList.innerHTML = '<p>No users found.</p>';
+                return;
+            }
+            
+            const userListHtml = users.map(user => `
+                <div style="padding: 8px; border-bottom: 1px solid #e0d8d0; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-weight: bold; font-size: 0.9rem;">${user.id.substring(0, 10)}...</div>
+                        <div style="font-size: 0.8rem; color: #8B4513;">${user.isAdmin ? 'Admin' : 'Regular User'}</div>
+                    </div>
+                    <div>
+                        ${user.isAdmin ? 
+                          '<span style="color: green; font-size: 0.8rem;">Has Access</span>' : 
+                          `<button class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem;" onclick="grantVideoAccessToUser('${user.id}')">Grant Access</button>`}
+                    </div>
+                </div>
+            `).join('');
+            
+            userList.innerHTML = userListHtml;
+        }
+        
+        // Grant video access to a specific user
+        function grantVideoAccessToUser(userId) {
+            grantAdminPermissions(userId);
+            showNotification(`Video access granted to user ${userId.substring(0, 10)}...`, 'success');
+            // Refresh the user list
+            listAllUsers();
+        }
+        
+        // List pending payments
+        function listPendingPayments() {
+            const paymentList = document.getElementById('paymentList');
+            paymentList.innerHTML = '';
+            paymentList.style.display = 'block';
+            
+            // Get all payment info from localStorage
+            const payments = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('payment_')) {
+                    const paymentData = JSON.parse(localStorage.getItem(key));
+                    payments.push(paymentData);
+                }
+            }
+            
+            if (payments.length === 0) {
+                paymentList.innerHTML = '<p>No pending payments found.</p>';
+                return;
+            }
+            
+            const paymentListHtml = payments.map(payment => `
+                <div style="padding: 8px; border-bottom: 1px solid #e0d8d0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: bold; font-size: 0.9rem;">Username: ${payment.username}</div>
+                            <div style="font-size: 0.8rem; color: #8B4513;">Ref: ${payment.transactionRef}</div>
+                            <div style="font-size: 0.8rem; color: #5D4037;">${new Date(payment.timestamp).toLocaleString()}</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem;" onclick="verifyPayment('${payment.userId}')">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            paymentList.innerHTML = paymentListHtml;
+        }
+        
+        // List pending assignments
+        function listPendingAssignments() {
+            const assignmentList = document.getElementById('assignmentList');
+            assignmentList.innerHTML = '';
+            assignmentList.style.display = 'block';
+            
+            // For demo purposes, we'll simulate pending assignments
+            // In a real implementation, this would fetch from a database
+            const assignments = [
+                { userId: 'user123', username: 'John Doe', assignment: 'Menu Planning Project', submitted: '2025-12-01' },
+                { userId: 'user456', username: 'Jane Smith', assignment: 'Menu Planning Project', submitted: '2025-12-02' }
+            ];
+            
+            if (assignments.length === 0) {
+                assignmentList.innerHTML = '<p>No pending assignments found.</p>';
+                return;
+            }
+            
+            const assignmentListHtml = assignments.map(assignment => `
+                <div style="padding: 8px; border-bottom: 1px solid #e0d8d0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: bold; font-size: 0.9rem;">${assignment.username}</div>
+                            <div style="font-size: 0.8rem; color: #8B4513;">${assignment.assignment}</div>
+                            <div style="font-size: 0.8rem; color: #5D4037;">Submitted: ${assignment.submitted}</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem; margin-right: 5px;" onclick="approveAssignment('${assignment.userId}')">Approve</button>
+                            <button class="btn btn-outline" style="padding: 4px 8px; font-size: 0.8rem;">Reject</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            assignmentList.innerHTML = assignmentListHtml;
+        }
+        
+        // Verify payment (in a real app, this would update a database)
+        function verifyPayment(userId) {
+            // In a real implementation, this would update the payment status in a database
+            // For demo, we'll just show an alert
+            showNotification(`Payment for user ${userId.substring(0, 10)}... has been verified!\n\nIn a real application, this would grant course access to the user.`, 'success');
+        }
+        
+        // Grant video access to a user
+        function grantVideoAccess() {
+            const userId = document.getElementById('userIdInput').value;
+            if (!userId) {
+                showNotification('Please enter a user ID', 'error');
+                return;
+            }
+            
+            grantAdminPermissions(userId);
+            showNotification(`Video access granted to user ${userId.substring(0, 10)}...`, 'success');
+            document.getElementById('userIdInput').value = '';
+        }
+        
+        // Handle video access based on user permissions and payment status
+        function handleVideoAccess(hasAccess) {
+            const moduleVideos = document.querySelectorAll('.module-video');
+            
+            // Check if user has paid for the course
+            const user = firebase.auth().currentUser;
+            let hasPaid = false;
+            
+            if (user) {
+                const paymentInfo = localStorage.getItem(`payment_${user.uid}`);
+                if (paymentInfo) {
+                    const payment = JSON.parse(paymentInfo);
+                    // In a real implementation, this would check if payment is verified
+                    // For demo, we'll assume if payment info exists, user has paid
+                    hasPaid = true;
+                }
+            }
+            
+            // Don't replace existing video content, just check access
+            if (hasAccess && hasPaid) {
+                // User has access to videos and has paid
+                // Videos are already in place, just ensure they're accessible
+                console.log('User has access to videos');
+            } else if (hasAccess && !hasPaid) {
+                // User has admin access but hasn't paid
+                moduleVideos.forEach(videoContainer => {
+                    // Clear existing content
+                    videoContainer.innerHTML = '';
+                    const message = document.createElement('div');
+                    message.style.padding = '20px';
+                    message.style.backgroundColor = '#FFF8F0';
+                    message.style.borderRadius = '10px';
+                    message.style.textAlign = 'center';
+                    message.style.marginTop = '10px';
+                    message.innerHTML = `
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #8B4513; margin-bottom: 10px;"></i>
+                        <h4 style="color: #8B4513; margin-bottom: 10px;">Payment Required</h4>
+                        <p style="color: #5D4037; margin-bottom: 15px;">You must complete payment to access course videos. Please visit the payment section to enroll.</p>
+                        <button class="btn btn-primary" onclick="showPaymentModal()" style="padding: 10px 20px;">Make Payment</button>
+                    `;
+                    videoContainer.appendChild(message);
+                });
+            } else if (!hasAccess) {
+                // User doesn't have admin permission
+                moduleVideos.forEach(videoContainer => {
+                    // Clear existing content
+                    videoContainer.innerHTML = '';
+                    const message = document.createElement('div');
+                    message.style.padding = '20px';
+                    message.style.backgroundColor = '#FFF8F0';
+                    message.style.borderRadius = '10px';
+                    message.style.textAlign = 'center';
+                    message.style.marginTop = '10px';
+                    message.innerHTML = `
+                        <i class="fas fa-lock" style="font-size: 2rem; color: #8B4513; margin-bottom: 10px;"></i>
+                        <h4 style="color: #8B4513; margin-bottom: 10px;">Access Denied</h4>
+                        <p style="color: #5D4037; margin-bottom: 15px;">You need admin permission to view course videos.</p>
+                        <button class="btn btn-primary" onclick="requestVideoAccess()" style="padding: 10px 20px;">Request Access</button>
+                    `;
+                    videoContainer.appendChild(message);
+                });
+            }
+        }
+        
+        // Request video access (in a real app, this would send a request to admin)
+        function requestVideoAccess() {
+            showNotification('Your request for video access has been sent to the administrator. You will be notified when access is granted.', 'info');
+        }
+        
+        // Load video progress from localStorage
+        function loadVideoProgress() {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            // Get video progress data
+            const progressData = JSON.parse(localStorage.getItem(`video_progress_${user.uid}`)) || {};
+            
+            // Get assignment data
+            const assignmentData = JSON.parse(localStorage.getItem(`module_assignments_${user.uid}`)) || {};
+            
+            // Update module statuses based on progress
+            const moduleItems = document.querySelectorAll('.module-item');
+            let completedCount = 0;
+            
+            moduleItems.forEach((item, index) => {
+                const moduleId = `module_${index + 1}`;
+                const statusElement = item.querySelector('.module-status');
+                const videoElement = item.querySelector('video');
+                
+                if (progressData[moduleId]) {
+                    const progress = progressData[moduleId];
+                    
+                    if (progress >= 100) {
+                        // Video completed
+                        statusElement.textContent = 'Completed';
+                        statusElement.className = 'module-status completed';
+                        completedCount++;
+                        
+                        // Show assignment if not yet submitted
+                        if (!assignmentData[moduleId]) {
+                            const assignmentDiv = document.getElementById(`assignment_module_${moduleId}`);
+                            if (assignmentDiv) {
+                                assignmentDiv.style.display = 'block';
+                            }
+                        } else if (assignmentData[moduleId] === 'submitted') {
+                            // Assignment already submitted
+                            const assignmentDiv = document.getElementById(`assignment_module_${moduleId}`);
+                            if (assignmentDiv) {
+                                assignmentDiv.style.display = 'none';
+                            }
+                        }
+                    } else {
+                        // Video in progress
+                        statusElement.textContent = `In Progress (${Math.round(progress)}%)`;
+                        statusElement.className = 'module-status in-progress';
+                        
+                        // Resume video from last position
+                        if (videoElement) {
+                            // Set the current time when metadata is loaded
+                            videoElement.addEventListener('loadedmetadata', function() {
+                                this.currentTime = (progress / 100) * this.duration || 0;
+                            });
+                        }
+                    }
+                } else {
+                    // Video not started
+                    statusElement.textContent = 'Not Started';
+                    statusElement.className = 'module-status not-started';
+                }
+            });
+            
+            // Update progress bar
+            const totalCount = moduleItems.length;
+            const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+            
+            document.getElementById('courseProgress').textContent = progressPercent + '%';
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+        
+        // Save video progress to localStorage
+        function saveVideoProgress(moduleId, progressPercent) {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            // Get existing progress data
+            const progressData = JSON.parse(localStorage.getItem(`video_progress_${user.uid}`)) || {};
+            
+            // Update progress for this module
+            progressData[moduleId] = progressPercent;
+            
+            // Save to localStorage
+            localStorage.setItem(`video_progress_${user.uid}`, JSON.stringify(progressData));
+            
+            // Update recently watched
+            updateRecentlyWatched(moduleId);
+            
+            // Update UI
+            loadVideoProgress();
+        }
+        
+        // Update recently watched video
+        function updateRecentlyWatched(moduleId) {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            // Save recently watched module
+            localStorage.setItem(`recent_video_${user.uid}`, moduleId);
+            
+            // Update UI
+            const recentlyWatchedDiv = document.getElementById('recentlyWatched');
+            const recentVideoName = document.getElementById('recentVideoName');
+            
+            // Get module name
+            const moduleMap = {
+                'module_1': 'Kitchen Fundamentals',
+                'module_2': 'Cooking Techniques',
+                'module_3': 'Menu Planning',
+                'module_4': 'Business Skills'
+            };
+            
+            if (recentlyWatchedDiv && recentVideoName) {
+                recentlyWatchedDiv.style.display = 'block';
+                recentVideoName.textContent = moduleMap[moduleId] || moduleId;
+            }
+        }
+        
+        // Load recently watched video on dashboard load
+        function loadRecentlyWatched() {
+            const user = firebase.auth().currentUser;
+            if (!user) return;
+            
+            const moduleId = localStorage.getItem(`recent_video_${user.uid}`);
+            if (moduleId) {
+                updateRecentlyWatched(moduleId);
+            }
+        }
+        
+        // Show assignment submission form
+        function showAssignmentSubmission() {
+            const submissionForm = document.getElementById('assignmentSubmission');
+            submissionForm.style.display = submissionForm.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Submit module assignment
+        function submitModuleAssignment(moduleId) {
+            const fileInput = document.getElementById(`assignment_image_${moduleId}`);
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showNotification('Please select an image to submit.', 'error');
+                return;
+            }
+            
+            // Show uploading message
+            const submitBtn = document.querySelector(`#assignment_module_${moduleId} .btn`);
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Uploading...';
+            submitBtn.disabled = true;
+            
+            // Simulate upload delay
+            setTimeout(() => {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Clear file input
+                fileInput.value = '';
+                
+                // Save assignment status
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    const assignments = JSON.parse(localStorage.getItem(`module_assignments_${user.uid}`)) || {};
+                    assignments[moduleId] = 'submitted';
+                    localStorage.setItem(`module_assignments_${user.uid}`, JSON.stringify(assignments));
+                }
+                
+                showNotification(`Assignment for ${moduleId} submitted successfully! Our team will review it and notify you of the results.`, 'success');
+                
+                // Hide the assignment form
+                const assignmentDiv = document.getElementById(`assignment_module_${moduleId}`);
+                if (assignmentDiv) {
+                    assignmentDiv.style.display = 'none';
+                }
+                
+                // Update the module status to show assignment submitted
+                const moduleItem = document.querySelector(`.module-item[data-module-id="${moduleId}"]`);
+                if (moduleItem) {
+                    const statusElement = moduleItem.querySelector('.module-status');
+                    if (statusElement) {
+                        statusElement.textContent = 'Assignment Submitted';
+                        statusElement.className = 'module-status completed';
+                    }
+                }
+            }, 2000);
+        }
+        
+        // Submit assignment
+        function submitAssignment() {
+            const fileInput = document.getElementById('assignmentImage');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showNotification('Please select an image to submit.', 'error');
+                return;
+            }
+            
+            // In a real implementation, you would upload the file to a server
+            // For demo purposes, we'll just simulate the submission
+            
+            // Show uploading message
+            const submitBtn = document.querySelector('#assignmentSubmission .btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Uploading...';
+            submitBtn.disabled = true;
+            
+            // Simulate upload delay
+            setTimeout(() => {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Clear file input
+                fileInput.value = '';
+                
+                // Hide submission form
+                document.getElementById('assignmentSubmission').style.display = 'none';
+                
+                // Update assignment status
+                const statusElement = document.querySelector('.assignment-status');
+                statusElement.textContent = 'Submitted';
+                statusElement.className = 'assignment-status pending'; // Keep pending until reviewed
+                
+                showNotification('Assignment submitted successfully! Our team will review it and notify you of the results.', 'success');
+            }, 2000);
+        }
+        
+        // Share to social media platforms
+        function shareToFacebook() {
+            const text = 'I just completed my assignment at JEMERAD Catering School! #jemeral';
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(text)}`, '_blank');
+        }
+        
+        function shareToTwitter() {
+            const text = 'I just completed my assignment at JEMERAD Catering School! #jemeral';
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+        
+        function shareToInstagram() {
+            showNotification('To share on Instagram:\n1. Take a screenshot of your achievement\n2. Open Instagram\n3. Create a new post\n4. Add the hashtag #jemeral', 'info');
+        }
+        
+        // Approve assignment (admin function)
+        function approveAssignment(userId) {
+            // In a real implementation, this would update the assignment status in a database
+            // For demo, we'll just show an alert and simulate approval
+            showNotification(`Assignment for user ${userId.substring(0, 10)}... has been approved!`, 'success');
+            
+            // Update assignment status in UI
+            const statusElement = document.querySelector('.assignment-status');
+            if (statusElement) {
+                statusElement.textContent = 'Approved';
+                statusElement.className = 'assignment-status completed';
+                
+                // Hide submission form if visible
+                const submissionForm = document.getElementById('assignmentSubmission');
+                if (submissionForm) {
+                    submissionForm.style.display = 'none';
+                }
+                
+                // Show social sharing buttons
+                const socialSharing = document.getElementById('socialSharing');
+                if (socialSharing) {
+                    socialSharing.style.display = 'block';
+                }
+            }
+            
+            // Also update module assignments if this is for a specific module
+            const user = firebase.auth().currentUser;
+            if (user) {
+                // Look for any module assignments for this user
+                const moduleAssignments = document.querySelectorAll('[id^="assignment_module_"]');
+                moduleAssignments.forEach(assignmentDiv => {
+                    const moduleId = assignmentDiv.id.replace('assignment_module_', '');
+                    const assignments = JSON.parse(localStorage.getItem(`module_assignments_${user.uid}`)) || {};
+                    if (assignments[moduleId] === 'submitted') {
+                        // Create a sharing section for this module
+                        const sharingDiv = document.createElement('div');
+                        sharingDiv.className = 'social-sharing';
+                        sharingDiv.style.marginTop = '15px';
+                        sharingDiv.style.padding = '10px';
+                        sharingDiv.style.background = '#FFF8F0';
+                        sharingDiv.style.borderRadius = '8px';
+                        sharingDiv.innerHTML = `
+                            <p style="margin-bottom: 10px; font-weight: bold;">Share your achievement for ${moduleId}:</p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button class="btn" style="background: #3b5998; color: white;" onclick="shareToFacebook()"><i class="fab fa-facebook-f"></i> Facebook</button>
+                                <button class="btn" style="background: #1da1f2; color: white;" onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
+                                <button class="btn" style="background: #e1306c; color: white;" onclick="shareToInstagram()"><i class="fab fa-instagram"></i> Instagram</button>
+                            </div>
+                        `;
+                        assignmentDiv.appendChild(sharingDiv);
+                    }
+                });
+            }
+        }
+        
+
+        
+        // Update navigation for dashboard
+        function updateNavigationForDashboard() {
+            // This would update the navigation to show dashboard-specific links
+            // For demo, we'll just add a logout button
+            addLogoutButton();
+            
+            // Add click handlers to module titles to toggle video visibility
+            document.querySelectorAll('.module-item a').forEach((link, index) => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const videoDiv = this.parentElement.querySelector('.module-video');
+                    const assignmentDiv = this.parentElement.querySelector('.module-assignment');
+                    if (videoDiv) {
+                        videoDiv.style.display = videoDiv.style.display === 'none' ? 'block' : 'none';
+                    }
+                    // Show assignment if video is completed
+                    const user = firebase.auth().currentUser;
+                    if (user && assignmentDiv) {
+                        const progressData = JSON.parse(localStorage.getItem(`video_progress_${user.uid}`)) || {};
+                        const moduleId = this.parentElement.dataset.moduleId;
+                        if (progressData[moduleId] && progressData[moduleId] >= 100) {
+                            assignmentDiv.style.display = 'block';
+                        }
+                    }
+                });
+            });
+            
+            // Add progress tracking to videos
+            document.querySelectorAll('video').forEach(video => {
+                const moduleId = video.id.replace('video_', '');
+                
+                // Load saved progress
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    const progressData = JSON.parse(localStorage.getItem(`video_progress_${user.uid}`)) || {};
+                    if (progressData[moduleId] && progressData[moduleId] < 100) {
+                        // Resume from last position
+                        video.addEventListener('loadedmetadata', function() {
+                            this.currentTime = (progressData[moduleId] / 100) * this.duration || 0;
+                        });
+                    }
+                }
+                
+                // Track progress
+                video.addEventListener('timeupdate', function() {
+                    if (this.duration) {
+                        const progress = (this.currentTime / this.duration) * 100;
+                        // Only save progress if it's significant (more than 1% change)
+                        const user = firebase.auth().currentUser;
+                        if (user) {
+                            const progressData = JSON.parse(localStorage.getItem(`video_progress_${user.uid}`)) || {};
+                            const moduleId = video.id.replace('video_', '');
+                            const lastProgress = progressData[moduleId] || 0;
+                            
+                            // Only save if progress has changed significantly or reached a milestone
+                            if (Math.abs(progress - lastProgress) > 1 || progress >= 100) {
+                                saveVideoProgress(moduleId, progress);
+                            }
+                        }
+                    }
+                });
+                
+                // Mark as completed when finished and show assignment
+                video.addEventListener('ended', function() {
+                    const moduleId = video.id.replace('video_', '');
+                    saveVideoProgress(moduleId, 100);
+                    
+                    // Show assignment for this module
+                    const assignmentDiv = document.getElementById(`assignment_module_${moduleId}`);
+                    if (assignmentDiv) {
+                        assignmentDiv.style.display = 'block';
+                    }
+                });
+            });
+        }
+        
+        // Add logout button to header
+        function addLogoutButton() {
+            const headerActions = document.querySelector('.header-actions');
+            const mobileNav = document.querySelector('.mobile-nav ul');
+            const mainNav = document.querySelector('nav ul');
+            
+            if (headerActions) {
+                // Clear existing buttons
+                headerActions.innerHTML = '';
+                
+                // Add admin button if user is admin
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    checkUserPermissions(user.uid).then(isAdmin => {
+                        if (isAdmin) {
+                            const adminBtn = document.createElement('button');
+                            adminBtn.className = 'btn btn-gold';
+                            adminBtn.textContent = 'Admin';
+                            adminBtn.style.marginRight = '10px';
+                            adminBtn.style.padding = '8px 15px';
+                            adminBtn.onclick = function() {
+                                // Scroll to admin panel
+                                document.getElementById('dashboard').scrollIntoView();
+                                setTimeout(() => {
+                                    showNotification('Admin panel is at the bottom of your dashboard', 'info');
+                                }, 500);
+                            };
+                            headerActions.appendChild(adminBtn);
+                        }
+                    });
+                }
+                
+                // Add welcome text and logout button
+                const welcomeSpan = document.createElement('span');
+                welcomeSpan.textContent = 'Welcome!';
+                welcomeSpan.style.marginRight = '15px';
+                welcomeSpan.style.color = 'var(--primary)';
+                welcomeSpan.style.fontWeight = '600';
+                
+                const logoutBtn = document.createElement('button');
+                logoutBtn.className = 'btn btn-outline';
+                logoutBtn.textContent = 'Logout';
+                logoutBtn.id = 'logoutBtn';
+                logoutBtn.style.padding = '8px 15px';
+                
+                headerActions.appendChild(welcomeSpan);
+                headerActions.appendChild(logoutBtn);
+                
+                // Add event listener for logout
+                logoutBtn.addEventListener('click', function() {
+                    firebase.auth().signOut().then(() => {
+                        // Sign-out successful
+                        console.log('User signed out');
+                        location.reload();
+                    }).catch((error) => {
+                        // An error happened
+                        console.error('Sign out error:', error);
+                        showNotification('Error signing out', 'error');
+                    });
+                });
+            }
+            
+            // Update main navigation - remove unnecessary items for logged in users
+            if (mainNav) {
+                // Remove Home, About, Programs, Facilities, Videos, Testimonials, Contact links
+                while (mainNav.firstChild) {
+                    mainNav.removeChild(mainNav.firstChild);
+                }
+                
+                // Add only essential links for logged in users
+                const dashboardLi = document.createElement('li');
+                dashboardLi.innerHTML = '<a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>';
+                mainNav.appendChild(dashboardLi);
+                
+                const paymentLi = document.createElement('li');
+                paymentLi.innerHTML = '<a href="#" onclick="showEnrollmentInfo()"><i class="fas fa-credit-card"></i> Payment</a>';
+                mainNav.appendChild(paymentLi);
+                
+                const contactLi = document.createElement('li');
+                contactLi.innerHTML = '<a href="#contact"><i class="fas fa-envelope"></i> Contact</a>';
+                mainNav.appendChild(contactLi);
+            }
+            
+            // Update mobile menu for better compactness
+            if (mobileNav) {
+                // Clear existing auth buttons
+                const loginLi = document.querySelector('#mobileLoginBtn').parentElement;
+                const registerLi = document.querySelector('#mobileRegisterBtn').parentElement;
+                if (loginLi) loginLi.remove();
+                if (registerLi) registerLi.remove();
+                
+                // Clear existing navigation items
+                while (mobileNav.firstChild) {
+                    mobileNav.removeChild(mobileNav.firstChild);
+                }
+                
+                // Add compact navigation for logged in users
+                const navItems = [
+                    { icon: 'tachometer-alt', text: 'Dashboard', href: '#dashboard' },
+                    { icon: 'book', text: 'Course Videos', href: '#videos' },
+                    { icon: 'credit-card', text: 'Payment', href: '#', action: 'showEnrollmentInfo()' },
+                    { icon: 'calendar-alt', text: 'Events', href: '#dashboard' },
+                    { icon: 'tasks', text: 'Assignments', href: '#dashboard' },
+                    { icon: 'certificate', text: 'Achievements', href: '#dashboard' },
+                    { icon: 'envelope', text: 'Contact', href: '#contact' }
+                ];
+                
+                navItems.forEach(item => {
+                    const li = document.createElement('li');
+                    if (item.action) {
+                        li.innerHTML = `<a href="#" onclick="${item.action}" style="text-align: center; padding: 12px; display: block;"><i class="fas fa-${item.icon}"></i> ${item.text}</a>`;
+                    } else {
+                        li.innerHTML = `<a href="${item.href}" style="text-align: center; padding: 12px; display: block;"><i class="fas fa-${item.icon}"></i> ${item.text}</a>`;
+                    }
+                    mobileNav.appendChild(li);
+                });
+                
+                // Check if user is admin and add admin link
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    checkUserPermissions(user.uid).then(isAdmin => {
+                        if (isAdmin) {
+                            const adminLi = document.createElement('li');
+                            adminLi.innerHTML = '<a href="#dashboard" style="text-align: center; padding: 12px; display: block;" onclick="setTimeout(() => showNotification(\'Admin panel is at the bottom of your dashboard\', \'info\'), 500);"><i class="fas fa-user-shield"></i> Admin Panel</a>';
+                            mobileNav.appendChild(adminLi);
+                        }
+                    });
+                }
+                
+                // Add logout button
+                const logoutLi = document.createElement('li');
+                logoutLi.innerHTML = '<button id="mobileLogoutBtn" style="width: 100%; background: var(--primary); color: white; margin-top: 8px; padding: 10px;"><i class="fas fa-sign-out-alt"></i> Logout</button>';
+                mobileNav.appendChild(logoutLi);
+                
+                // Add event listener for mobile logout
+                const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+                if (mobileLogoutBtn) {
+                    mobileLogoutBtn.addEventListener('click', function() {
+                        firebase.auth().signOut().then(() => {
+                            // Sign-out successful
+                            console.log('User signed out');
+                            location.reload();
+                        }).catch((error) => {
+                            // An error happened
+                            console.error('Sign out error:', error);
+                            showNotification('Error signing out', 'error');
+                        });
+                    });
+                }
+            }
+        }
+        
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('paymentUsername').value;
+            const transactionRef = document.getElementById('transactionReference').value;
+            const confirmation = document.getElementById('paymentConfirmation').checked;
+            
+            if (!username || !transactionRef || !confirmation) {
+                showNotification('Please fill in all required fields and confirm your payment.', 'error');
+                return;
+            }
+            
+            // In a real implementation, you would save this payment info to a database
+            // and manually verify the payment before granting course access
+            
+            // Store payment info in localStorage for demo purposes
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const paymentInfo = {
+                    userId: user.uid,
+                    username: username,
+                    transactionRef: transactionRef,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending_verification'
+                };
+                
+                localStorage.setItem(`payment_${user.uid}`, JSON.stringify(paymentInfo));
+                
+                // Show warning message
+                document.getElementById('paymentWarning').style.display = 'block';
+                
+                showNotification('Payment confirmation submitted!\n\nYour payment will be manually verified within 24 hours. You will receive an email notification once your enrollment is confirmed and course access is granted.\n\nIMPORTANT: Ensure your username was included in the payment note, or your enrollment will be denied.', 'success');
+                
+                // Hide modal after 3 seconds
+                setTimeout(() => {
+                    hideModals();
+                }, 3000);
+            } else {
+                showNotification('You must be logged in to submit payment confirmation.', 'error');
+            }
+        });
 
         // Form submission
         document.getElementById('inquiryForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your inquiry! Our admissions team will contact you within 24 hours.');
-            this.reset();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const program = document.getElementById('program').value;
+            const message = document.getElementById('message').value;
+            
+            // Show success message
+            const formMessage = document.getElementById('formMessage');
+            formMessage.style.display = 'block';
+            formMessage.style.backgroundColor = '#d4edda';
+            formMessage.style.color = '#155724';
+            formMessage.style.border = '1px solid #c3e6cb';
+            formMessage.innerHTML = `<strong>Thank you, ${name}!</strong><br>We've received your inquiry about the ${program} program. Our admissions team will contact you at ${email} or ${phone} within 24 hours.`;
+            
+            // Reset form after 5 seconds
+            setTimeout(() => {
+                this.reset();
+                formMessage.style.display = 'none';
+            }, 5000);
         });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                // Don't interfere with form submission
                 if (this.getAttribute('type') === 'submit') {
                     return;
                 }
@@ -1470,16 +4455,74 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                
+                // Handle home link specially
+                if (targetId === '#' || targetId === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
                 
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
+                    // Calculate offset for fixed header
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
                     window.scrollTo({
-                        top: targetSection.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Testimonial carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
+
+            // Show first testimonial
+            function showTestimonial(index) {
+                testimonialCards.forEach((card, i) => {
+                    card.style.display = i === index ? 'block' : 'none';
+                });
+            }
+
+            // Initialize carousel
+            showTestimonial(currentIndex);
+
+            // Next button
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showTestimonial(currentIndex);
+            });
+
+            // Previous button
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + testimonialCards.length) % testimonialCards.length;
+                showTestimonial(currentIndex);
+            });
+
+            // Auto rotate testimonials
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showTestimonial(currentIndex);
+            }, 5000);
         });
     </script>
 </body>
