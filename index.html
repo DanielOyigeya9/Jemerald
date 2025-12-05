@@ -1066,31 +1066,45 @@
         }
 
         .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
             margin-top: 20px;
         }
 
         .author-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            border-radius: calc(var(--radius) * 2);
             overflow: hidden;
-            margin-right: 20px;
-            border: 4px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.2);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+            position: relative;
         }
 
         .author-image:hover {
-            transform: scale(1.1);
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .author-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, transparent 100%);
         }
 
         .author-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            transition: all 0.5s ease;
+        }
+
+        .author-image:hover img {
+            transform: scale(1.05);
         }
 
         .author-info h4 {
@@ -2285,6 +2299,19 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Promotional Video Section for All Visitors -->
+                <div class="hero-video-promo" style="margin-top: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; backdrop-filter: blur(10px);">
+                    <h3 style="color: white; margin-top: 0;"><i class="fas fa-film"></i> Experience Our Culinary Excellence</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 15px;">See what you'll learn in our Professional Catering Chef Program</p>
+                    <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); max-width: 600px; margin: 0 auto;">
+                        <video width="100%" controls autoplay muted loop style="border-radius: 10px;" poster="VID-20251205-WA0015.mp4">
+                            <source src="VID-20251205-WA0015.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 10px; text-align: center;">This is just a preview of our comprehensive curriculum</p>
+                </div>
                 <script>
                     // Update hero video preview based on auth state
                     firebase.auth().onAuthStateChanged(function(user) {
@@ -2301,8 +2328,8 @@
                                 
                                 if (hasPermission && hasPaid) {
                                     heroVideoPreview.innerHTML = `
-                                        <video width="100%" style="border-radius: 10px;" poster="VID-20251123-WA0120.mp4">
-                                            <source src="VID-20251123-WA0120.mp4" type="video/mp4">
+                                        <video width="100%" controls autoplay muted loop style="border-radius: 10px;" poster="VID-20251205-WA0015.mp4">
+                                            <source src="VID-20251205-WA0015.mp4" type="video/mp4">
                                         </video>
                                     `;
                                 } else if (hasPermission && !hasPaid) {
@@ -2340,11 +2367,11 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="JEMERA Catering School Kitchen">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="JEMERAL Catering School Kitchen">
                 </div>
                 <div class="about-text">
                     <h2>Where <span>Catering</span> Dreams Begin</h2>
-                    <p>Founded by Attah John with a vision to revolutionize culinary education in Nigeria, JEMERA Catering Services is Otupko's premier institution for gastronomic excellence.</p>
+                    <p>Founded by the Attah's with a vision to revolutionize culinary education in Nigeria, JEMERA Catering Services is Otupko's premier institution for gastronomic excellence.</p>
                     
                     <div class="mission-vision">
                         <h3>Our Mission</h3>
@@ -2370,6 +2397,19 @@
                             <div class="stat-number">95%</div>
                             <div class="stat-text">Employment Rate</div>
                         </div>
+                    </div>
+                    
+                    <!-- About Video Section -->
+                    <div style="margin-top: 40px; background: var(--light); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary); text-align: center; margin-top: 0;"><i class="fas fa-video"></i> Inside Our Culinary School</h3>
+                        <p style="text-align: center; color: #5D4037; margin-bottom: 20px;">Take a virtual tour of our facilities and teaching methods</p>
+                        <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;">
+                            <video width="100%" controls autoplay muted loop style="border-radius: 10px;" poster="VID-20251205-WA0013.mp4">
+                                <source src="VID-20251205-WA0013.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p style="text-align: center; color: #5D4037; margin-top: 15px; font-size: 0.95rem;">Our state-of-the-art kitchens and experienced instructors provide an immersive learning environment</p>
                     </div>
                 </div>
             </div>
@@ -2405,12 +2445,25 @@
                         
                         <div class="program-price">
                             <div class="price">₦80,000 <span>/ complete program</span></div>
-                            <button id="programEnrollBtn" class="btn btn-primary" onclick="showEnrollmentInfo()">Enroll Now</button>
+                            <div style="color: #e74c3c; font-weight: bold; margin-top: 10px;">PROMO PRICE - HURRY NOW WHILE OFFER LASTS!</div>
+                            <a href="payment.html" class="btn btn-primary">Enroll Now</a>
                         </div>
                         <div class="program-cta">
                             <p><i class="fas fa-calendar-check"></i> Next intake: January 2026</p>
-                            <p><i class="fas fa-clock"></i> Duration: 6 months intensive</p>
-                            <p><i class="fas fa-certificate"></i> Industry-recognized certificate</p>
+                            <p><i class="fas fa-clock"></i> Duration: 3 months intensive</p>
+                            <p><i class="fas fa-certificate"></i> Diploma certificate</p>
+                        </div>
+                        
+                        <!-- Program Video Preview -->
+                        <div style="margin-top: 25px; background: var(--light); border-radius: 10px; padding: 20px;">
+                            <h4 style="color: var(--primary); margin-top: 0;"><i class="fas fa-play-circle"></i> Program Highlights</h4>
+                            <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                <video width="100%" controls autoplay muted loop style="border-radius: 10px;" poster="VID-20251205-WA0010.mp4">
+                                    <source src="VID-20251205-WA0010.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <p style="margin-top: 15px; color: #5D4037; font-size: 0.9rem;">This video showcases what you'll experience in our comprehensive catering program</p>
                         </div>
                     </div>
                 </div>
@@ -2510,8 +2563,23 @@
                     </div>
                     <div class="facility-content">
                         <h3>Event Setup Area</h3>
-                        <p>Dedicated space for learning event setup, decoration, and logistics for large-scale catering operations.</p>
+                        <p>Dedicated space for learning event setup, decoration, and logistics for large-scale catering operations. Fully air-conditioned for comfort.</p>
                     </div>
+                </div>
+                
+                <!-- Facilities Video Showcase -->
+                <div style="margin-top: 50px; background: var(--light); border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div class="section-header" style="margin-bottom: 30px;">
+                        <h2>Experience Our Facilities</h2>
+                        <p>Take a virtual tour of our world-class culinary facilities</p>
+                    </div>
+                    <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.15); max-width: 900px; margin: 0 auto;">
+                        <video width="100%" controls autoplay muted loop style="border-radius: 15px;" poster="VID-20251205-WA0012.mp4">
+                            <source src="VID-20251205-WA0012.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p style="text-align: center; color: #5D4037; margin-top: 20px; font-size: 1.1rem;">Our commercial kitchens and event setup areas provide hands-on experience with industry-standard equipment</p>
                 </div>
             </div>
         </div>
@@ -2550,7 +2618,7 @@
                                 <span class="module-status not-started">Not Started</span>
                                 <div class="module-video" style="margin-top: 10px; display: none;">
                                     <video id="video_module_1" width="100%" controls style="border-radius: 10px;">
-                                        <source src="VID-20251123-WA0120.mp4" type="video/mp4">
+                                        <source src="VID-20251205-WA0015.mp4" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
@@ -2567,7 +2635,7 @@
                                 <span class="module-status not-started">Not Started</span>
                                 <div class="module-video" style="margin-top: 10px; display: none;">
                                     <video id="video_module_2" width="100%" controls style="border-radius: 10px;">
-                                        <source src="cooking-techniques.mp4" type="video/mp4">
+                                        <source src="VID-20251205-WA0013.mp4" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
@@ -2584,7 +2652,7 @@
                                 <span class="module-status not-started">Not Started</span>
                                 <div class="module-video" style="margin-top: 10px; display: none;">
                                     <video id="video_module_3" width="100%" controls style="border-radius: 10px;">
-                                        <source src="menu-planning.mp4" type="video/mp4">
+                                        <source src="VID-20251205-WA0010.mp4" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
@@ -2601,7 +2669,7 @@
                                 <span class="module-status not-started">Not Started</span>
                                 <div class="module-video" style="margin-top: 10px; display: none;">
                                     <video id="video_module_4" width="100%" controls style="border-radius: 10px;">
-                                        <source src="business-skills.mp4" type="video/mp4">
+                                        <source src="VID-20251205-WA0012.mp4" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>
                                 </div>
@@ -2676,61 +2744,30 @@
     </section>
     
     <!-- Note: Place video files in the same directory as this HTML file -->
-    <!-- Required video files: VID-20251123-WA0120.mp4, cooking-techniques.mp4, menu-planning.mp4, business-skills.mp4 -->
+    <!-- Required video files: VID-20251205-WA0015.mp4, VID-20251205-WA0013.mp4, VID-20251205-WA0010.mp4, VID-20251205-WA0012.mp4 -->
     
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
-                <h2>Student Success Stories</h2>
-                <p>Hear from our graduates who are making waves in the catering world</p>
+                <h2>Company Success Story</h2>
+                <p>Learn about our journey and achievements in culinary education</p>
             </div>
             
             <div class="testimonial-container">
                 <div class="testimonial-slider">
                     <div class="testimonial-card">
-                        <p class="testimonial-text">"As one of the first students at JEMERA, I've had the unique opportunity to help shape this incredible institution. The hands-on training and mentorship from industry experts has given me the confidence to start my own catering venture after graduation."</p>
+                        <p class="testimonial-text">"Since our founding, JEMERA Catering Services has become Otukpo's premier institution for gastronomic excellence. We've trained over 200 professional caterers who are now leading the culinary scene across Nigeria. Our commitment to quality education and hands-on training has earned us recognition as an industry leader in catering education."</p>
                         <div class="testimonial-author">
                             <div class="author-image">
-                                <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Attah Johnson">
+                                <img src="WhatsApp Image 2025-12-05 at 20.52.50_b6519af1.jpg" alt="JEMERA Catering Services">
                             </div>
-                            <div class="author-info">
-                                <h4>Attah Johnson</h4>
-                                <p>Founding Student, Class of 2025</p>
+                            <div class="author-info" style="text-align: center;">
+                                <h4>Founded by the Attah's</h4>
+                                <p>Established 2025</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"The professional training I received at JEMERA transformed my passion for cooking into a successful career. The instructors are world-class and the facilities are unmatched in the region. I now run a thriving catering business."</p>
-                        <div class="testimonial-author">
-                            <div class="author-image">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Okonkwo">
-                            </div>
-                            <div class="author-info">
-                                <h4>Michael Okonkwo</h4>
-                                <p>Pastry Arts Graduate, Class of 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"JEMERA's event management program gave me the business skills I needed to launch my catering company. The practical experience with real clients during the program was invaluable for my career success."</p>
-                        <div class="testimonial-author">
-                            <div class="author-image">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amina Abdullahi">
-                            </div>
-                            <div class="author-info">
-                                <h4>Amina Abdullahi</h4>
-                                <p>Event Management Graduate, Class of 2023</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-nav">
-                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -2809,11 +2846,11 @@
             }
             
             // Determine which video to show based on container ID
-            let videoSrc = 'VID-20251123-WA0120.mp4';
+            let videoSrc = 'VID-20251205-WA0015.mp4';
             if (container.id === 'cookingTechniquesVideo') {
-                videoSrc = 'cooking-techniques.mp4';
+                videoSrc = 'VID-20251205-WA0013.mp4';
             } else if (container.id === 'menuPlanningVideo') {
-                videoSrc = 'menu-planning.mp4';
+                videoSrc = 'VID-20251205-WA0010.mp4';
             }
             
             if (hasAccess && hasPaid) {
@@ -2888,7 +2925,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Our Location</h4>
-                                <p>123 Culinary Avenue, GRA<br>Otupko, Nigeria</p>
+                                <p>Number 4 Ojira Road, beside Jufex Pharmacy<br>Otukpo, Benue State, Nigeria</p>
                             </div>
                         </div>
                         
@@ -2908,7 +2945,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Email Address</h4>
-                                <p>admissions@jemeracatering.edu.ng<br>info@jemeracatering.edu.ng</p>
+                                <p>admissions@jemeralcatering.edu.ng<br>info@jemeralcatering.edu.ng</p>
                             </div>
                         </div>
                         
@@ -3060,7 +3097,7 @@
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span><strong>Account Name:</strong></span>
-                            <span style="font-weight: bold; color: #8B4513;">JEMERAD Catering Services</span>
+                            <span style="font-weight: bold; color: #8B4513;">JEMERA Catering Services</span>
                         </div>
                     </div>
                     
@@ -3118,7 +3155,7 @@
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span><strong>Account Name:</strong></span>
-                            <span style="font-weight: bold; color: #8B4513;">JEMERAD Catering Services</span>
+                            <span style="font-weight: bold; color: #8B4513;">JEMERA Catering Services</span>
                         </div>
                     </div>
                     
@@ -3166,8 +3203,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column footer-about">
-                    <h3>JEMERAD Catering</h3>
-                    <p>Founded by Attah John, Otupko's premier institution for catering and culinary education, dedicated to nurturing the next generation of culinary professionals through world-class training and mentorship.</p>
+                    <h3>JEMERA Catering</h3>
+                    <p>Founded by the Attah's, Otupko's premier institution for catering and culinary education, dedicated to nurturing the next generation of culinary professionals through world-class training and mentorship.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -3211,16 +3248,16 @@
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Culinary Avenue, GRA, Otupko</li>
-                        <li><i class="fas fa-phone-alt"></i> +234 703 446 901</li>
-                        <li><i class="fas fa-envelope"></i> info@jemeralcatering.edu.ng</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Number 4 Ojira Road, beside Jufex Pharmacy, Otukpo, Benue State</li>
+                        <li><i class="fas fa-phone-alt"></i> 07034466901</li>
+                        <li><i class="fas fa-envelope"></i> jemracs@gmail.com</li>
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8:00AM - 6:00PM</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 JEMERAD Catering Services. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FFD700;"></i> for culinary excellence<br>
+                <p>&copy; 2025 JEMERA Catering Services. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #FFD700;"></i> for culinary excellence<br>
                 <small>Established 2025 | ABN: 123 456 789 | CRICOS Provider Code: 01234ABC</small></p>
             </div>
         </div>
@@ -3864,7 +3901,7 @@
         }
         
         function shareToTwitter() {
-            const text = 'I just completed my assignment at JEMERAD Catering School! #jemeral';
+            const text = 'I just completed my assignment at JEMERA Catering School! #jemeral';
             window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
         }
         
@@ -4239,13 +4276,25 @@
             const program = document.getElementById('program').value;
             const message = document.getElementById('message').value;
             
+            // Log the inquiry for debugging
+            const inquiryData = {
+                name: name,
+                email: email,
+                phone: phone,
+                program: program,
+                message: message,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('New inquiry submitted:', inquiryData);
+            
             // Show success message
             const formMessage = document.getElementById('formMessage');
             formMessage.style.display = 'block';
             formMessage.style.backgroundColor = '#d4edda';
             formMessage.style.color = '#155724';
             formMessage.style.border = '1px solid #c3e6cb';
-            formMessage.innerHTML = `<strong>Thank you, ${name}!</strong><br>We've received your inquiry about the ${program} program. Our admissions team will contact you at ${email} or ${phone} within 24 hours.`;
+            formMessage.innerHTML = `<strong>Thank you, ${name}!</strong><br>We've received your inquiry about the ${program} program. Our admissions team will contact you at ${email} or ${phone} within 24 hours.<br><br><small>Your inquiry has been logged and our team will review it shortly.</small>`;
             
             // Reset form after 5 seconds
             setTimeout(() => {
@@ -4299,40 +4348,57 @@
             }
         });
 
-        // Testimonial carousel
+        // Testimonial display
         document.addEventListener('DOMContentLoaded', function() {
             const testimonialCards = document.querySelectorAll('.testimonial-card');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            let currentIndex = 0;
-
-            // Show first testimonial
-            function showTestimonial(index) {
-                testimonialCards.forEach((card, i) => {
-                    card.style.display = i === index ? 'block' : 'none';
-                });
+            
+            // Show first testimonial if multiple exist
+            if (testimonialCards.length > 1) {
+                let currentIndex = 0;
+                
+                function showTestimonial(index) {
+                    testimonialCards.forEach((card, i) => {
+                        card.style.display = i === index ? 'block' : 'none';
+                    });
+                }
+                
+                // Initialize carousel
+                showTestimonial(currentIndex);
+                
+                // Auto rotate testimonials
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % testimonialCards.length;
+                    showTestimonial(currentIndex);
+                }, 5000);
+            } else if (testimonialCards.length === 1) {
+                // Just show the single testimonial
+                testimonialCards[0].style.display = 'block';
             }
-
-            // Initialize carousel
-            showTestimonial(currentIndex);
-
-            // Next button
-            nextBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex + 1) % testimonialCards.length;
-                showTestimonial(currentIndex);
+        });
+        
+        // Video autoplay when in view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create intersection observer for videos
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        // Play video when it comes into view
+                        if (video.paused) {
+                            video.muted = true; // Muted autoplay required by browsers
+                            video.play().catch(e => console.log('Autoplay prevented:', e));
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of video is visible
             });
-
-            // Previous button
-            prevBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + testimonialCards.length) % testimonialCards.length;
-                showTestimonial(currentIndex);
+            
+            // Observe all videos on the page
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                videoObserver.observe(video);
             });
-
-            // Auto rotate testimonials
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % testimonialCards.length;
-                showTestimonial(currentIndex);
-            }, 5000);
         });
     </script>
 </body>
